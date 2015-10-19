@@ -1,4 +1,4 @@
-# Competition:
+# Competition
 
 ## Griddy
 
