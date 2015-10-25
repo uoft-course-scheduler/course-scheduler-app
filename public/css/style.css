@@ -514,3 +514,7 @@ a {
 .scheduleHeader > div {
 	display: inline-block;
 }
+
+#generateSchedule:hover {
+	color: black;
+}
