@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-4" id="left">
+	<div class="col-md-3" id="left">
 		<form >
 			Add up to six courses:
 			<br>
@@ -26,146 +26,156 @@
 
 		<br>
 		<br>
-		<a href='#' class='button'>GENERATE</a>
+		<button class='button' id="generateSchedule">GENERATE</button>
 	</div>
 
-	<div class="col-md-8" id="right">
+	<div class="col-md-9" id="right">
 		<div class="row">
 			<div class="col-md-12 scheduleHeader">
-				<div class="arrow" id="leftArrow"><button>&lt;</button></div>
-				<div>Schedule</div>
-				<div class="arrow" id="rightArrow"><button>&gt;</button></div>
+				<div><button class="arrow" id="leftArrow">&lt;</button></div>
+				<div class="scheduleTitle"><h4>Schedule <span id="index">1</span> of <span id="total">1</span></h4></div>
+				<div><button class="arrow" id="rightArrow">&gt;</button></div>
 			</div>
 		</div>
-		<table id="Schedule">
-			<tr>
-				<th>Time</th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thrusday</th>
-				<th>Friday</th>
-			</tr>
-			<tr>
-				<th>8:00 - 9:00</th>
-				<td> test value <br>asdfkawlekfj<br>awklefjalwkefjkla</td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>9:00 - 10:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>10:00 - 11:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>11:00 - 12:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>12:00 - 1:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>1:00 - 2:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>2:00 - 3:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>3:00 - 4:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>4:00 - 5:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>			
-			<tr>
-				<th>3:00 - 4:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>4:00 - 5:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>5:00 - 6:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>6:00 - 7:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>7:00 - 8:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<th>8:00 - 9:00</th>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-		</table>
+		<div class="row">
+			<table class="table-bordered" id="Schedule">
+				<colgroup>
+					<col width="20%">
+					<col width="16%">
+					<col width="16%">
+					<col width="16%">
+					<col width="16%">
+					<col width="16%">
+				</colgroup>
+				<tr>
+					<th>Time</th>
+					<th>Monday</th>
+					<th>Tuesday</th>
+					<th>Wednesday</th>
+					<th>Thrusday</th>
+					<th>Friday</th>
+				</tr>
+				<tr>
+					<th>8:00 - 9:00</th>
+					<td> test value <br>asdfkawlekfj<br>awklefjalwkefjkla</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>9:00 - 10:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>10:00 - 11:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>11:00 - 12:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>12:00 - 1:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>1:00 - 2:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>2:00 - 3:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>3:00 - 4:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>4:00 - 5:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>			
+				<tr>
+					<th>3:00 - 4:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>4:00 - 5:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>5:00 - 6:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>6:00 - 7:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>7:00 - 8:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<th>8:00 - 9:00</th>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>

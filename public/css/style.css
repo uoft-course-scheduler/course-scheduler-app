@@ -8,7 +8,8 @@ a {
 }
 
 .arrow {
-
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .text{
@@ -36,6 +37,7 @@ a {
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
+   width: 100%;
    }
 
    #leftSide {
@@ -61,7 +63,7 @@ a {
    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
    padding:8px;
    margin-bottom:20px;
-   width:280px;
+   width:100%;
    }
 
    .filterMenu {
@@ -76,7 +78,7 @@ a {
    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
    padding:8px;
    margin-bottom:20px;
-   width:300px;
+   width:100%;
    }
 
 	#sides{
@@ -492,10 +494,12 @@ a {
 	margin-top: 
 }
 
-
 #Schedule {
-	float: left;
-	text-align: left;
+	display: inline-block;
+}
+
+#Schedule th {
+	text-align: center;
 }
 
 #right {
@@ -504,8 +508,13 @@ a {
 
 .scheduleHeader {
 	display: inline-block;
+	margin-bottom: 10px;
 }
 
 .scheduleHeader > div {
 	display: inline-block;
+}
+
+#generateSchedule:hover {
+	color: black;
 }
