@@ -5,7 +5,9 @@ body {
 a {
   color: #00B7FF;
 }
-
+.text{
+	position: absolute;
+}
 .button {
    border: 1px solid #8cd1ff;
    background: #8cd1ff;
@@ -40,6 +42,8 @@ a {
 
    }
    .courses {
+   	position: relative;
+   	margin-top: 15px;
    border: 2px solid #000000;
    background: #ffffff;
    -webkit-border-radius: 0px;
@@ -69,12 +73,63 @@ a {
    width:300px;
    }
 
+	#sides{
+		margin:0;
+	}
+	
+	#Monday{
+		position: absolute;
+		float:left;
+		margin-left: 530px;
+		margin-right: 95px;
+		overflow:hidden;
+		color: #8cd1ff;
+
+	}
+	#Tuesday{
+		position: absolute;
+		float:left;
+		margin-left: 670px;
+		margin-right: 95px;
+		overflow:hidden;
+		color: #8cd1ff;
+	} 
+	#Wednesday{
+		position: absolute;
+		float:left;
+		margin-left: 810px;
+		margin-right: 95px;
+		overflow:hidden;
+		color: #8cd1ff;
+	} 
+	#Thursday{
+		position: absolute;
+		float:left;
+		margin-left: 965px;
+		margin-right: 95px;
+		overflow:hidden;
+		color: #8cd1ff;
+	} 
+	#Friday{
+		position: absolute;
+		float:left;
+		margin-left: 1120px;
+		margin-right: 95px;
+		overflow:hidden;
+		color: #8cd1ff;
+	} 
+
  .wrapper{
+ 	position: absolute;
 	float: left;
+	margin-left: 175px;
+	margin-top: 25px;
 	left: 314px;
 	width: 735px;
 	background-color: #000000
 }
+
+
 .wp1{
 	position: relative;
 	float: left;
