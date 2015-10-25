@@ -6,6 +6,11 @@ html, body {
 a {
   color: #00B7FF;
 }
+
+.arrow {
+
+}
+
 .text{
 	position: absolute;
 }
@@ -491,6 +496,10 @@ a {
 #Schedule {
 	float: left;
 	text-align: left;
+}
+
+#right {
+	text-align: center;
 }
 
 .scheduleHeader {
