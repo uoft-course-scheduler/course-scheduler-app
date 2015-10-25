@@ -492,10 +492,12 @@ a {
 	margin-top: 
 }
 
-
 #Schedule {
-	float: left;
-	text-align: left;
+	display: inline-block;
+}
+
+#Schedule th {
+	text-align: center;
 }
 
 #right {
