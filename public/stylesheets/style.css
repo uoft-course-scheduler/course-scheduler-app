@@ -1,5 +1,6 @@
-body {
+html, body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
 }
 
 a {
@@ -429,4 +430,9 @@ a {
 	height: 38px;
 	background-color: rgb(255, 255, 255);
 	margin-top: 
+}
+
+
+#Schedule {
+	float: left;
 }
