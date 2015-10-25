@@ -1,200 +1,191 @@
 <!DOCTYPE html>
 <html>
-<div id="clear"></div>
-<div id="leftSide">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<title>Project Phase 2</title>
+	<link rel="stylesheet" type="text/css" href="../public/css/style.css">
 </head>
 
-<p class = "text">Add up to six courses:</p>
-<br>
-  <input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase">
-  <br>
-  <input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase">
-  <br>
-  <input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase">
-  <br>
-  <input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase">
-  <br>
-  <input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase">
-  <br>	
-  <input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase">
-  <br>
-</form>
+<body>
+
+	<div id="wrapper">
+		<div id="top">
+
+		</div>
+
+		<div id="leftSide">
+			<form >
+
+				Add up to six courses:
+				<br>
+				<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase">
+				<br>
+				<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase">
+				<br>
+				<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase">
+				<br>
+				<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase">
+				<br>
+				<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase">
+				<br>	
+				<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase">
+				<br>
+			</form>
+
+
+			<select id ="filter" class="filterMenu">
+				<option selected="selected">Filter Results by</option>
+				<option value="leastTime">Least time at school</option>
+				<option value="evening">Evening Classes preferred</option>
+				<option value="longBreaks">Long Breaks</option>
+			</select>
+
+			<br>
+			<br>
+			<a href='#' class='button'>GENERATE</a>
 
 
 
+		</div> <!-- leftSide -->
 
-<select id ="filter" class="filterMenu">
-<option selected="selected">Filter Results by</option>
-  <option value="leastTime">Least time at school</option>
-  <option value="evening">Evening Classes preferred</option>
-  <option value="longBreaks">Long Breaks</option>
-</select>
 
-<br>
-<br>
-<a href='#' class='button'>GENERATE</a>
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
+	<div class="rightSide">
+
+		<table id="Schedule">
+			<tr>
+				<th>Time</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thrusday</th>
+				<th>Friday</th>
+			</tr>
+			<tr>
+				<th>8:00 - 9:00</th>
+				<td> test value <br>asdfkawlekfj<br>awklefjalwkefjkla</td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>9:00 - 10:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>10:00 - 11:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>11:00 - 12:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>12:00 - 1:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>1:00 - 2:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>2:00 - 3:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>3:00 - 4:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>4:00 - 5:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>			
+			<tr>
+				<th>3:00 - 4:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>4:00 - 5:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>5:00 - 6:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>6:00 - 7:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>7:00 - 8:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<th>8:00 - 9:00</th>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+		</table>
+
+	</div> <!--rightside -->
+
 
 </div>
-<html>
-
-<div id="timings"> 9 10 11 12 1 2 3 4 5 6 7 8 9 </div>
-
-<div id="dats">
-  <div id="Monday">Monday</div>    
-  <div id="Tuesday">Tuesday</div>
-  <div id="Wednesday">Wednesday</div>
-  <div id="Thursday">Thursday</div>
-  <div id="Friday">Friday</div>
-</div>
-
-<div class="rightSide">
-		<div class="wrapper">
-	     <div class="wp1">
-          <div class="g11">
-          </div>
-          <div class="g12">
-          </div>
-          <div class="g13">
-          </div>
-          <div class="g14">
-          </div>
-          <div class="g15">
-          </div>
-          <div class="g16">
-          </div>
-          <div class="g17">
-          </div>
-          <div class="g18">
-          </div>
-          <div class="g19">
-          </div>
-          <div class="g110">
-          </div>
-          <div class="g111">
-          </div>
-          <div class="g112">
-          </div>
-	     </div>
-	     <div class="wp2">
-          <div class="g21">
-          </div>
-          <div class="g22">
-          </div>
-          <div class="g23">
-          </div>
-          <div class="g24">
-          </div>
-          <div class="g25">
-          </div>
-          <div class="g26">
-          </div>
-          <div class="g27">
-          </div>
-          <div class="g28">
-          </div>
-          <div class="g29">
-          </div>
-          <div class="g210">
-          </div>
-          <div class="g211">
-          </div>
-          <div class="g212">
-          </div>
-	     </div>
-	     <div class="wp3">
-          <div class="g31">
-          </div>
-          <div class="g32">
-          </div>
-          <div class="g33">
-          </div>
-          <div class="g34">
-          </div>
-          <div class="g35">
-          </div>
-          <div class="g36">
-          </div>
-          <div class="g37">
-          </div>
-          <div class="g38">
-          </div>
-          <div class="g39">
-          </div>
-          <div class="g310">
-          </div>
-          <div class="g311">
-          </div>
-          <div class="g312">
-          </div>
-	     </div>
-	     <div class="wp4">
-          <div class="g41">
-          </div>
-          <div class="g42">
-          </div>
-          <div class="g43">
-          </div>
-          <div class="g44">
-          </div>
-          <div class="g45">
-          </div>
-          <div class="g46">
-          </div>
-          <div class="g47">
-          </div>
-          <div class="g48">
-          </div>
-          <div class="g49">
-          </div>
-          <div class="g410">
-          </div>
-          <div class="g411">
-          </div>
-          <div class="g412">
-          </div>
-	     </div>
-	     <div class="wp5">
-          <div class="g51">
-          </div>
-          <div class="g52">
-          </div>
-          <div class="g53">
-          </div>
-          <div class="g54">
-          </div>
-          <div class="g55">
-          </div>
-          <div class="g56">
-          </div>
-          <div class="g57">
-          </div>
-          <div class="g58">
-          </div>
-          <div class="g59">
-          </div>
-          <div class="g510">
-          </div>
-          <div class="g511">
-          </div>
-          <div class="g512">
-          </div>
-	     </div>
-	 </div> 
-
-
-	 </div>
-
-
-
-
+</body>
 
 </html>
