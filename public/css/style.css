@@ -40,7 +40,7 @@ a {
 
    #rightSide{
    	float: left;
-
+   	text-align: center;
    }
    .courses {
    	position: relative;
@@ -490,4 +490,13 @@ a {
 
 #Schedule {
 	float: left;
+	text-align: left;
+}
+
+.scheduleHeader {
+	display: inline-block;
+}
+
+.scheduleHeader > div {
+	display: inline-block;
 }
