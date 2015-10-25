@@ -6,6 +6,11 @@ html, body {
 a {
   color: #00B7FF;
 }
+
+.arrow {
+
+}
+
 .text{
 	position: absolute;
 }
@@ -40,7 +45,7 @@ a {
 
    #rightSide{
    	float: left;
-
+   	text-align: center;
    }
    .courses {
    	position: relative;
@@ -490,4 +495,17 @@ a {
 
 #Schedule {
 	float: left;
+	text-align: left;
+}
+
+#right {
+	text-align: center;
+}
+
+.scheduleHeader {
+	display: inline-block;
+}
+
+.scheduleHeader > div {
+	display: inline-block;
 }

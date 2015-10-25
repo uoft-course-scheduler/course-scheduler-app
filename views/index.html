@@ -1,58 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Project Phase 2</title>
-	<!--<link rel="stylesheet" type="text/css" href="../public/css/style.css">-->
-</head>
-
-<body>
-
-	<div id="wrapper">
-		<div id="top">
-
-		</div>
-
-		<div id="leftSide">
-			<form >
-				Add up to six courses:
-				<br>
-				<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase">
-				<br>
-				<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase">
-				<br>
-				<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase">
-				<br>
-				<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase">
-				<br>
-				<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase">
-				<br>	
-				<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase">
-				<br>
-			</form>
-
-
-			<select id ="filter" class="filterMenu">
-				<option selected="selected">Filter Results by</option>
-				<option value="leastTime">Least time at school</option>
-				<option value="evening">Evening Classes preferred</option>
-				<option value="longBreaks">Long Breaks</option>
-			</select>
-
+<div class="row">
+	<div class="col-md-4" id="left">
+		<form >
+			Add up to six courses:
 			<br>
+			<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase">
 			<br>
-			<a href='#' class='button'>GENERATE</a>
+			<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase">
+			<br>
+			<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase">
+			<br>
+			<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase">
+			<br>
+			<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase">
+			<br>	
+			<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase">
+			<br>
+		</form>
 
+		<select id ="filter" class="filterMenu">
+			<option selected="selected">Filter Results by</option>
+			<option value="leastTime">Least time at school</option>
+			<option value="evening">Evening Classes preferred</option>
+			<option value="longBreaks">Long Breaks</option>
+		</select>
 
+		<br>
+		<br>
+		<a href='#' class='button'>GENERATE</a>
+	</div>
 
-		</div> <!-- leftSide -->
-
-
-
-	<div class="rightSide">
-		<div class="scheduleHeader">
-			<div class="arrow" id="leftArrow">&lt;</div>
-			<div>Schedule</div>
-			<div class="arrow" id="rightArrow">&gt;</div>
+	<div class="col-md-8" id="right">
+		<div class="row">
+			<div class="col-md-12 scheduleHeader">
+				<div class="arrow" id="leftArrow"><button>&lt;</button></div>
+				<div>Schedule</div>
+				<div class="arrow" id="rightArrow"><button>&gt;</button></div>
+			</div>
 		</div>
 		<table id="Schedule">
 			<tr>
@@ -184,10 +167,5 @@
 				<td> </td>
 			</tr>
 		</table>
-	</div> <!--rightside -->
-
-
+	</div>
 </div>
-</body>
-
-</html>
