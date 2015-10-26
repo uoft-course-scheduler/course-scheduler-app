@@ -7,7 +7,10 @@
  * @param {String} json a parsed json object that represents a U of T course.
  */
 var Course = function(json) {
-  this.json = json;
+  // Copy all the json data onto this object itself.
+  for (var property in json) {
+    this[property] = json[property];
+  }
 };
 
 

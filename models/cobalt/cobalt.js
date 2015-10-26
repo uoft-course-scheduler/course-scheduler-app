@@ -112,9 +112,38 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
     callback(arrayCourses);
 
   }, query);
+};
 
-}
+/**
+ * Passes the course with the specified id as parameter to the callback 
+ * function. Note that the id of the course is not the same as the course code.
+ * To get a course by course code, see Cobalt.prototype.findCourse().
+ *
+ * @see    Cobalt.prototype.findCourse();
+ * @param  {[type]}   id       the id of the course.
+ * @param  {Function} callback the function to call with the course passed as
+ *                             parameter.
+ * @return {void}
+ */
+Cobalt.prototype.getCourse = function(id, callback) {
+  var query = {
+    id : id,
+    key : this.key
+  };
 
+  request(SHOW_COURSES, function(data) {
+    // On error.
+    if (data === null) {
+      callback({});
+    }
+
+    var courseData = JSON.parse(data);
+    var course = new Course(courseData);
+
+    callback(course);
+
+  }, query);
+};
 
 /**
  * Send a request to the http resource as specified in options. Calls callback 
@@ -146,11 +175,9 @@ function request(opt, callback, q) {
   for (var key in q) {
     var search = ':' + key;
     if (options.path.indexOf(search) > -1) {
-      options.path.replace(search, q.key);
+      options.path = options.path.replace(search, q[key]);
 
-      // Faster than delete q.key;
-      // http://stackoverflow.com/a/21735614/4833127
-      q.key = undefined;
+      delete q[key];
     }
   }
 
