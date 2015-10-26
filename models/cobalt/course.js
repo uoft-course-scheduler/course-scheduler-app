@@ -85,8 +85,28 @@ Course.list = function(num) {
 }
 
 
+/**
+ * Send a request to the http resource as specified in options. Calls callback 
+ * with the data received as parameter once the request was made successfully. 
+ * If an error occurs, will instead call callback with null as the parameter.
+ * 
+ * If the path to the http resource is RESTful, specify the RESTful portion of
+ * the path with the syntax :x where x is any alphanumeric string. Then, pass
+ * the key x along with the desire value as a property of q.
+ * 
+ * @param  {Object}   opt      specifies the host, path, port, and method used.
+ * @param  {Function} callback the function that will be called when the request
+ *                             succeeds,
+ * @param  {Object}   q        optional. The query key value pairings.
+ * @return {void}
+ */
+function request(opt, callback, q) {
 
-function get(opt, q, callback) {
+  // Defaults to no query.
+  if (typeof q === 'undefined') {
+    q = {};
+  }
+
   // Since options is supposed to be a constant, we don't want to mutate it.
   var options = opt;
 
@@ -106,7 +126,7 @@ function get(opt, q, callback) {
   var query = querystring.stringify(q);
   options.path = options.path + '?' + query;
 
-  http.request(options, function(response) {
+  var request = http.request(options, function(response) {
   	var data = '';
 
   	/**
@@ -122,5 +142,24 @@ function get(opt, q, callback) {
   	response.on('end', function () {
       callback(str);
   	});
-  }).end();
+  });
+
+  /**
+   * Handler for when the http request encounters an error.
+   */
+  request.on('error', function (e) {
+    callback(null);
+  });
+
+  /**
+   * Handler for when the http request time out.
+   */
+  request.on('timeout', function () {
+    request.abort();
+    callback(null);
+  });
+
+  request.setTimeout(5000);
+  request.end();
+
 }
