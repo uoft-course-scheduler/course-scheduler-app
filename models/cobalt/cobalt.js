@@ -14,7 +14,6 @@ var LIST_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
   path: '/api/1.0/courses/list',
-  method: 'GET',
   headers: {
     'Accept': 'application/json'
   }
@@ -30,7 +29,6 @@ var SHOW_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
   path: '/api/1.0/courses/show/:id',
-  method: 'GET',
   headers: {
     'Accept': 'application/json'
   }
@@ -46,7 +44,6 @@ var SEARCH_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
   path: '/api/1.0/courses/search',
-  method: 'GET',
   headers: {
     'Accept': 'application/json'
   }
@@ -95,21 +92,20 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
     key : this.key
   };
 
-  request(LIST_COURSES, function(data) {
+  get(LIST_COURSES, function(data) {
     // On error.
     if (data === null) {
       callback([]);
     }
 
-    var courses = JSON.parse(data);
 
-    var arrayCourses = [];
-    for (var i = 0; i < courses.length; i++) {
-      var course = new Course(courses[i]);
-      arrayCourses.push(course);
+    var courses = [];
+    for (var i = 0; i < data.length; i++) {
+      var course = new Course(data[i]);
+      courses.push(course);
     }
 
-    callback(arrayCourses);
+    callback(courses);
 
   }, query);
 };
@@ -128,17 +124,16 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
 Cobalt.prototype.getCourse = function(id, callback) {
   var query = {
     id : id,
-    key : this.key
+
   };
 
-  request(SHOW_COURSES, function(data) {
+  get(SHOW_COURSES, function(data) {
     // On error.
     if (data === null) {
       callback({});
     }
 
-    var courseData = JSON.parse(data);
-    var course = new Course(courseData);
+    var course = new Course(data);
 
     callback(course);
 
@@ -146,9 +141,10 @@ Cobalt.prototype.getCourse = function(id, callback) {
 };
 
 /**
- * Send a request to the http resource as specified in options. Calls callback 
- * with the data received as parameter once the request was made successfully. 
- * If an error occurs, will instead call callback with null as the parameter.
+ * Send a GET request to the http resource as specified in options. Parses the 
+ * received data as json and calls the callback function with the parsed json
+ * as parameter. If an error occurs, null will be passed to the callback
+ * function as the parameter instead.
  * 
  * If the path to the http resource is RESTful, specify the RESTful portion of
  * the path with the syntax :x where x is any alphanumeric string. Then, pass
@@ -160,7 +156,7 @@ Cobalt.prototype.getCourse = function(id, callback) {
  * @param  {Object}   q        optional. The query key value pairings.
  * @return {void}
  */
-function request(opt, callback, q) {
+function get(opt, callback, q) {
 
   // Defaults to no query.
   if (typeof q === 'undefined') {
@@ -169,6 +165,9 @@ function request(opt, callback, q) {
 
   // Since options is supposed to be a constant, we don't want to mutate it.
   var options = opt;
+
+  // This function only supports GET.
+  options.method = 'GET';
 
   // If any key value pair can be passed in a RESTful way (as opposed to a 
   // query string), then do that instead.
@@ -198,7 +197,19 @@ function request(opt, callback, q) {
      * Handler for when the whole response has been received.
      */
     response.on('end', function() {
-      callback(data);
+      try {
+        var json = JSON.parse(data);
+
+        // Checks whether or not the api call returned an error.
+        if (typeof json.error === 'undefined') {
+          callback(json);
+        } else {
+          callback(null);
+        }        
+      } catch(e) {
+        console.log('PARSE ERROR ' + options.host + options.path + ' ' + e);
+        callback(null);
+      }      
     });
   });
 
@@ -206,6 +217,7 @@ function request(opt, callback, q) {
    * Handler for when the http request encounters an error.
    */
   request.on('error', function(e) {
+    console.log('REQUEST ERROR ' + options.host + options.path + ' ' + e);
     callback(null);
   });
 
@@ -213,6 +225,7 @@ function request(opt, callback, q) {
    * Handler for when the http request time out.
    */
   request.on('timeout', function() {
+    console.log('REQUEST TIMEOUT ' + options.host + options.path + ' ' + e);
     request.abort();
     callback(null);
   });

@@ -33,9 +33,9 @@ router.get('/get', function(req, res, next) {
   cobalt.getCourse('CSC148H1F20159', function(c) {
     var str = JSON.stringify(c, null, 2);
     res.write(str);
-    res.end();
   });
 
+  res.end();
 });
 
 
