@@ -96,12 +96,31 @@ function get(opt, q, callback) {
     var search = ':' + key;
     if (options.path.indexOf(search) > -1) {
       options.path.replace(search, q.key);
-      delete q.key;
+
+      // Faster than delete q.key;
+      // http://stackoverflow.com/a/21735614/4833127
+      q.key = undefined;
     }
   }
 
   var query = querystring.stringify(q);
   options.path = options.path + '?' + query;
 
-  http.request(options, callback).end();
+  http.request(options, function(response) {
+  	var data = '';
+
+  	/**
+  	 * Handler for when data has been received.
+  	 */
+  	response.on('data', function (chunk) {
+  	  data += chunk;
+  	});
+
+  	/**
+  	 * Handler for when the whole response has been received.
+  	 */
+  	response.on('end', function () {
+      callback(str);
+  	});
+  }).end();
 }
