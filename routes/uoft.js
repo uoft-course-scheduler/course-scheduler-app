@@ -32,8 +32,8 @@ router.get('/get', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.getCourse('CSC148H1F20159', function(c) {
-    //var str = JSON.stringify(c, null, 2);
-    res.write('test');
+    var str = JSON.stringify(c, null, 2);
+    res.write(str);
 
     res.end();
   });
