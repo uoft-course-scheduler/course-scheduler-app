@@ -66,7 +66,7 @@ var Cobalt = function(key) {
  * Creates an array of no more than limit elements where each element is a 
  * Course object that represents a single U of T course. The array is created 
  * from a list of all registered U of T courses on Cobalt, after skipping the
- * first skip courses. The created array is passed as parameter to the callback 
+ * first skip courses. The created array is passed as argument to the callback 
  * function.
  * 
  * @static
@@ -112,14 +112,14 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
 };
 
 /**
- * Passes the course with the specified id as parameter to the callback 
+ * Passes the course with the specified id as argument to the callback 
  * function. Note that the id of the course is not the same as the course code.
  * To get a course by course code, see Cobalt.prototype.findCourse().
  *
  * @see    Cobalt.prototype.findCourse();
  * @param  {[type]}   id       the id of the course.
  * @param  {Function} callback the function to call with the course passed as
- *                             parameter.
+ *                             argument.
  * @return {void}
  */
 Cobalt.prototype.getCourse = function(id, callback) {
@@ -143,10 +143,41 @@ Cobalt.prototype.getCourse = function(id, callback) {
 };
 
 /**
+ * Passes a single course with the specified course code as argument to the
+ * callback function. If multiple courses are found, only the first course will
+ * be passed. Although there should never be two courses with the same code.
+ * 
+ * @param  {String}   code     the course code.
+ * @param  {Function} callback the function to call with the course passed as
+ *                             argument.
+ * @return {void}
+ */
+Cobalt.prototype.findCourse = function(code, callback) {
+  var query = {
+    q : '"' + code + '"',
+    limit : 1,
+    key : this.key
+  };
+
+  get(SEARCH_COURSES, function(data) {
+    // On error.
+    if (data === null || data.length < 1) {
+      callback({});
+      return;
+    }
+
+    var course = new Course(data[0]);
+
+    callback(course);
+
+  }, query);
+};
+
+/**
  * Send a GET request to the http resource as specified in options. Parses the 
  * received data as json and calls the callback function with the parsed json
- * as parameter. If an error occurs, null will be passed to the callback
- * function as the parameter instead.
+ * as argument. If an error occurs, null will be passed to the callback
+ * function as the argument instead.
  * 
  * If the path to the http resource is RESTful, specify the RESTful portion of
  * the path with the syntax :x where x is any alphanumeric string. Then, pass
@@ -205,11 +236,12 @@ function get(opt, callback, q) {
       try {
         var json = JSON.parse(data);
 
-        // Checks whether or not the api call returned an error.
         if (typeof json.error !== 'undefined') {
+          console.log('API ERROR ' + json.error);
           callback(null);
           return;
         }
+
         callback(json);
       } catch(e) {
         console.log('PARSE ERROR ' + options.host + options.path + ' ' + e);

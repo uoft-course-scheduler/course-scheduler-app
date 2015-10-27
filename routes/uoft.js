@@ -40,6 +40,19 @@ router.get('/get', function(req, res, next) {
 
 });
 
+// Get the course with the code CSC301H1F
+router.get('/code', function(req, res, next) {
+  var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
+
+  cobalt.findCourse('CSC301H1F', function(c) {
+    var str = JSON.stringify(c, null, 2);
+    res.write(str);
+
+    res.end();
+  });
+
+});
+
 
 
 module.exports = router;
