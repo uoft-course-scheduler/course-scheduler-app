@@ -166,7 +166,10 @@ function get(opt, callback, q) {
   }
 
   // Since options is supposed to be a constant, we don't want to mutate it.
-  var options = opt;
+  var options = {};
+  for (var property in opt) {
+    options[property] = opt[property];
+  }
 
   // This function only supports GET.
   options.method = 'GET';
