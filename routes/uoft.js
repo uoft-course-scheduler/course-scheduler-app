@@ -40,7 +40,7 @@ router.get('/get', function(req, res, next) {
 
 });
 
-// Get the course with the code CSC301H1F
+// Get the course with the code CSC301H1F.
 router.get('/code', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
@@ -54,5 +54,19 @@ router.get('/code', function(req, res, next) {
 });
 
 
+// Find courses with the word CSC, limit to 10 (default).
+router.get('/search', function(req, res, next) {
+  var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
+
+  cobalt.searchCourses('CSC', function(a) {
+    for (var i = 0; i < a.length; i++) {
+      var str = JSON.stringify(a[i], null, 2);
+      res.write(str);
+    }
+
+    res.end();
+  });
+
+});
 
 module.exports = router;

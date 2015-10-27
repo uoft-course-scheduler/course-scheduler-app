@@ -160,7 +160,7 @@ Cobalt.prototype.findCourse = function(code, callback) {
   };
 
   get(SEARCH_COURSES, function(data) {
-    // On error.
+    // On error or not found.
     if (data === null || data.length < 1) {
       callback({});
       return;
@@ -169,6 +169,55 @@ Cobalt.prototype.findCourse = function(code, callback) {
     var course = new Course(data[0]);
 
     callback(course);
+
+  }, query);
+};
+
+/**
+ * Passes an array of Courses with either it's course code, course name or 
+ * course description matching with search to the callback function.
+ * 
+ * @param  {String}   search   the code, name, or description to search on.
+ * @param  {Function} callback the function to call with the array of courses
+ *                             passed as argument.
+ * @param {Number}    limit    optional. defaults to 10. The number of courses 
+ *                             to return in the array, max 200.
+ * @param {Number}    skip     optional. defaults to 0. The number of courses to 
+ *                             skip from the list of all courses.
+ * @return {void}
+ */
+Cobalt.prototype.searchCourses = function(search, callback, limit, skip) {
+  limit = limit || 10;
+  skip = skip || 0;
+
+  // The 200 limit is imposed by the Cobalt API.
+  if (limit > 200) {
+    limit = 200;
+  }
+
+
+  var query = {
+    q : search,
+    limit : limit,
+    skip : skip,
+    key : this.key
+  };
+
+  get(SEARCH_COURSES, function(data) {
+    // On error.
+    if (data === null) {
+      callback([]);
+      return;
+    }
+
+
+    var courses = [];
+    for (var i = 0; i < data.length; i++) {
+      var course = new Course(data[i]);
+      courses.push(course);
+    }
+
+    callback(courses);
 
   }, query);
 };
