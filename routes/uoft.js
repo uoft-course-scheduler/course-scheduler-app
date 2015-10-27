@@ -10,6 +10,7 @@ var router = express.Router();
 var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 
+
 // List 20 courses, skip the first 10.
 router.get('/list', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
@@ -31,11 +32,12 @@ router.get('/get', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.getCourse('CSC148H1F20159', function(c) {
-    var str = JSON.stringify(c, null, 2);
-    res.write(str);
+    //var str = JSON.stringify(c, null, 2);
+    res.write('test');
+
+    res.end();
   });
 
-  res.end();
 });
 
 

@@ -96,6 +96,7 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
     // On error.
     if (data === null) {
       callback([]);
+      return;
     }
 
 
@@ -124,13 +125,14 @@ Cobalt.prototype.listCourses = function(callback, limit, skip) {
 Cobalt.prototype.getCourse = function(id, callback) {
   var query = {
     id : id,
-
+    key : this.key
   };
 
   get(SHOW_COURSES, function(data) {
     // On error.
     if (data === null) {
       callback({});
+      return;
     }
 
     var course = new Course(data);
@@ -201,11 +203,11 @@ function get(opt, callback, q) {
         var json = JSON.parse(data);
 
         // Checks whether or not the api call returned an error.
-        if (typeof json.error === 'undefined') {
-          callback(json);
-        } else {
+        if (typeof json.error !== 'undefined') {
           callback(null);
-        }        
+          return;
+        }
+        callback(json);
       } catch(e) {
         console.log('PARSE ERROR ' + options.host + options.path + ' ' + e);
         callback(null);
