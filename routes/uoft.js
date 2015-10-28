@@ -11,6 +11,7 @@ router.get('/list', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.listCourses(function(courses) {
+    res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(courses));
   });
 
