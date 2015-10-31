@@ -18,7 +18,7 @@ Large - Large tasks are tasks that will take longer than a day to complete. They
 - MVP: The minimum viable product will jsut display a list of courses that has the minimal amount of conflict.
 
 ## Sprint Backlog
-On October 20th, 2015 the team met on Slack to speak about the logistics of the project. We decided on building a timetable generator. The way it would work is that the user would enter upto six courses and our timetable generator will connect to an API with the course info, get the different sections available and get all permutations of the different timetables available and display them. The timetables will be sorted by the least time spent at school. We decided to make a web app. 
+On October 20th, 2015 the team met on Slack to speak about the logistics of the project. We decided on building a timetable generator. The way it would work is that the user would enter up to six courses and our timetable generator will connect to an API with the course info, get the different sections available and get all permutations of the different timetables available and display them. The timetables will be sorted by the least time spent at school. We decided to make a web app. 
 
 To do this, we decided that there will split the application into different sections: [frontend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Afrontend+) and [backend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Abackend+). We didn't decide on the order of tasks or the responsibilites. To make this easier, the TA suggested that we use Zenhub to be able to see which tasks are open and which ones have been completed. All the issues were created by Wayne so that we could work on them.
 
