@@ -1,5 +1,4 @@
 
-// need to fix this :()
 var permutations = [];
 
 /**
