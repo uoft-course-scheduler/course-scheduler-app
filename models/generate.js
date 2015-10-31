@@ -22,7 +22,7 @@ function gen(a) {
   }
 
   // call helper to generate permutations
-  permutation(courseList, [], courseList.length);
+  permutation(courseList, []);
 
   return permutations;
 }
