@@ -1,6 +1,6 @@
 
 // need to fix this :()
-var permutations = []
+var permutations = [];
 
 /**
  * Generates a permutation of courses
@@ -13,7 +13,7 @@ var Generate = function(a) {
 
 // calls helper to generate permutations
 function gen(a) {
-
+  permutations = [];
   var courseList = []
 
   // each course is an entry so:
@@ -38,7 +38,6 @@ function permutation(courses, arrangement) {
 
     for (var meeting of courses[0].meeting_sections) {
 
-      console.log(courses[0].code);
       var course = {
         "meeting_section" : meeting,
         "course_code" : courses[0].code
