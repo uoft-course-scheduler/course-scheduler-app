@@ -1,3 +1,5 @@
+var path = require('path');
+var Section = require(path.join(__dirname, 'section'));
 
 /**
  * The Course Class.
@@ -11,6 +13,12 @@ var Course = function(json) {
   for (var property in json) {
     this[property] = json[property];
   }
+
+  // Convert meeting section json object to a Section object.
+  for (var i = 0; i < this.meeting_sections.length; i++) {
+    this.meeting_sections[i] = new Section(this.meeting_sections[i]);
+  }
+
 };
 
 

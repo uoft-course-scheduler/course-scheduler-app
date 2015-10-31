@@ -3,19 +3,28 @@
 		<form >
 			Add up to six courses:
 			<br>
-			<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>
-			<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>
-			<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>
-			<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>
-			<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>	
-			<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase">
+			<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase" list="courseList">
 			<br>
 		</form>
+
+		<datalist id="courseList">
+			<option value="AST101H1F">
+			<option value="CSC108H1F">
+			<option value="CSC301H1F">
+			<option value="MAT137Y1Y">
+			<option value="MAT224H1F">
+			<option value="PHY151H1F">
+		</datalist>
 
 		<select id ="filter" class="filterMenu">
 			<option selected="selected">Filter Results by</option>
