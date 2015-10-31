@@ -1,6 +1,4 @@
-var path = require('path');
-var Section = require(path.join(__dirname, 'section'));
-
+'use strict';
 
 /**
  * The Permutation Class.
@@ -14,26 +12,42 @@ var Permutation = function(a) {
 };
 
 
+/**
+ * Returns the permutation of a given array.
+ * @param  {Array} a  the array to get the permutation of.
+ * @return {Array}    an array of permutationts of a.
+ */
 function permutate(a) {
+  if (a.length <= 1) {
+    return [a];
+  }
+
+  // Final results.
   var permutations = [];
 
   for (var i = 0; i < a.length; i++) {
-    var permutation = [a[i]];
+    var elementArray = a.slice(i, i + 1);
 
-    // Array of everything except the element at a[i].
-    var subarrayOne = a.slice(0, i);
-    var subarrayTwo = a.slice(i + 1);
-    var subarray = subarrayOne.concat(subarrayTwo);
+    // Get remaining elements.
+    var before = a.slice(0, i);
+    var after = a.slice(i + 1);
+    var remaining = before.concat(after);
 
-    if (subarray.length > 0) {
-      permutation.concat(permutate(subarray));
+    // Recursively get permutation of remaining elements.
+    var subPermutations = permutate(remaining);
+    
+    for (var j = 0; j < subPermutations.length; j++) {
+      permutations.push(elementArray.concat(subPermutations[j]));
     }
 
-    permutations.push(permutation);
   }
 
   return permutations;
 }
+
+Permutation.prototype.toArray = function() {
+  return this.a;
+};
 
 
 module.exports = Permutation;
