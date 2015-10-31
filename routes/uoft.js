@@ -4,6 +4,7 @@ var url = require('url');
 
 var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
+var Generate = require(path.join(__dirname, '../models/generate'));
 
 
 router.get('/course/list', function(req, res, next) {
@@ -84,7 +85,11 @@ router.get('/course/generate', function(req, res, next) {
     if (courses.length > 0) {
       cobalt.findCourse(courses[0], r);
     } else {
-      res.end(JSON.stringify(cobaltCourses));
+
+      var generate = new Generate(cobaltCourses);
+      // for here we should be able to do something like 
+      // generate the permutations and send it to the client for display
+      res.end(JSON.stringify(generate));
     }
 
   });
