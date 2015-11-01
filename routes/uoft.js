@@ -5,6 +5,8 @@ var url = require('url');
 var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 var Generate = require(path.join(__dirname, '../models/generate'));
+var Time = require(path.join(__dirname, '../models/time'));
+var TimeSort = require(path.join(__dirname, '../models/timesort'));
 
 
 router.get('/course/list', function(req, res, next) {
@@ -87,9 +89,21 @@ router.get('/course/generate', function(req, res, next) {
     } else {
 
       var generate = new Generate(cobaltCourses);
+
+      var time = new Time(generate);
+
+      // console.log(time.a);
+      // for (var i = 0; i<time.a.length; i++) {
+      //   console.log("time.a[",i,"] is ", time.a[i]);
+      // }
+
+      var timesort = new TimeSort(time.a);
+      // console.log(timesort.a);
+
+      
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(generate));
+      res.end(JSON.stringify(timesort.a.slice(0,10)));
     }
 
   });
