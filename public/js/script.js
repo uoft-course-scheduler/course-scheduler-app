@@ -1,36 +1,113 @@
-course = {
-	"_id" : "562dd38ba6b3f172bd92580e",
-	"id" : "COPD02H3Y20159",
-	"code" : "COPD02H3Y",
-	"name" : "Co-op IDS Work Prep ",
-	"description" : "",
-	"division" : "University of Toronto Scarborough",
-	"department" : "Centre for Critical Development Studies (UTSC)",
-	"prerequisites" : "",
-	"exclusions" : "",
-	"level" : 400,"campus":"UTSC",
-	"term": "2015 Fall",
-	"meeting_sections" :
-		[{
-			"code" : "T0001",
-			"size" : 60,
-			"enrolment" : 0,
-			"times" : 
-				[{
-					"day" : "FRIDAY",
-					"start" : 13,
-					"end" : 15,
-					"duration" : 2,
-					"location" : "MW 140"
-				}],
-			"instructors":["K Boomgaardt"]
-		}],
-	"breadths" : []
-}
+course =
+   {
+      "meeting_section" :
+      	[{
+	         "code":"L5101",
+	         "size":85,
+	         "enrolment":0,
+	         "times":[
+	            {
+	               "day":"MONDAY",
+	               "start":18,
+	               "end":21,
+	               "duration":3,
+	               "location":"BA 1200"
+	            }
+	         ],
+	         "instructors":[
+	            "Y Freund"
+	         ]
+	      }],
+      "course_code":"CSC301H1F"
+   }
+
+
+courses = 
+	[
+   [
+      {
+         "meeting_section":{
+            "code":"L0101",
+            "size":85,
+            "enrolment":0,
+            "times":[
+               {
+                  "day":"MONDAY",
+                  "start":12,
+                  "end":13,
+                  "duration":1,
+                  "location":"BA 1200"
+               },
+               {
+                  "day":"WEDNESDAY",
+                  "start":12,
+                  "end":13,
+                  "duration":1,
+                  "location":"BA 1200"
+               },
+               {
+                  "day":"FRIDAY",
+                  "start":12,
+                  "end":13,
+                  "duration":1,
+                  "location":"BA 1200"
+               }
+            ],
+            "instructors":[
+               "M Zaleski"
+            ]
+         },
+         "course_code":"CSC301H1F"
+      },
+      {
+         "meeting_section":{
+            "code":"L0101",
+            "size":160,
+            "enrolment":0,
+            "times":[
+               {
+                  "day":"MONDAY",
+                  "start":11,
+                  "end":12,
+                  "duration":1,
+                  "location":"LM 159"
+               },
+               {
+                  "day":"TUESDAY",
+                  "start":9,
+                  "end":11,
+                  "duration":2,
+                  "location":"LM 162"
+               },
+               {
+                  "day":"WEDNESDAY",
+                  "start":11,
+                  "end":12,
+                  "duration":1,
+                  "location":"LM 159"
+               },
+               {
+                  "day":"FRIDAY",
+                  "start":11,
+                  "end":12,
+                  "duration":1,
+                  "location":"LM 159"
+               }
+            ],
+            "instructors":[
+               "G Baumgartner"
+            ]
+         },
+         "course_code":"CSC165H1F"
+      }
+   ]
+]
+
+
 
 function renderCourse(json, code) {
-	var sections = json.meeting_sections,
-		secion;
+	var sections = json.meeting_section,
+		section;
 	for (var i=0; i<sections.length; i++) {
 		if (sections[i].code == code) {
 			section = sections[i];
@@ -57,7 +134,6 @@ function insertSection(section) {
 		while (time != end) {
 			var hourRow = $("." + time);
 			hourBlock = hourRow.children(day);
-			hourBlock.html("hello");
 			hourBlock.css("border", "none");
 			hourBlock.css("background-color", "#c0dfd9");
 			hourBlock.css("padding", "5px");
@@ -78,6 +154,14 @@ function insertSection(section) {
 	}
 }
 
+function renderCourses(json){
+	var schedule = json[0];
+	for (var i = 0; i < schedule.length; i++){
+		var section = schedule[i].meeting_section;
+		insertSection(section);
+	}
+}
+
 $(document).ready(function() {
-	renderCourse(course, "T0001");
+	renderCourses(courses);
 });
