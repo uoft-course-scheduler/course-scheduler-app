@@ -98,7 +98,7 @@ router.get('/course/generate', function(req, res, next) {
       // }
 
       var timesort = new TimeSort(time.a);
-      console.log(timesort.a);
+      // console.log(timesort.a);
 
       
       // for here we should be able to do something like 
