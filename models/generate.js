@@ -35,7 +35,6 @@ function permutation(courses, arrangement) {
     permutations.push(arrangement);
   } else {
     for (var i = 0; i < courses[0].meeting_sections.length; i++) {
-      console.log(courses[0].meeting_sections.code);
 
       // if its a lecture section, add the course.
       if (courses[0].meeting_sections[i].code[0] == 'L') {
