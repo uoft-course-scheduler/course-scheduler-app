@@ -1,25 +1,24 @@
 <div class="row">
 	<div class="col-md-3" id="left">
+		<script src="/js/dropdown.js"></script>
 		<form >
 			Add up to six courses:
 			<br>
-			<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course1">
+			<input class = "courses" type="text" name="course1" placeholder="CSC108H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course1" onkeypress="populateDatalist(this)">
 			<br>
-			<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course2">
+			<input class = "courses" type="text" name="course2" placeholder="CSC165H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course2" onkeypress="populateDatalist(this)">
 			<br>
-			<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course3">
+			<input class = "courses" type="text" name="course3" placeholder="MAT135H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course3" onkeypress="populateDatalist(this)">
 			<br>
-			<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course4">
+			<input class = "courses" type="text" name="course4" placeholder="PSY100H1F" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course4" onkeypress="populateDatalist(this)">
 			<br>
-			<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course5">
+			<input class = "courses" type="text" name="course5" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course5" onkeypress="populateDatalist(this)">
 			<br>	
-			<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course6">
+			<input class = "courses" type="text" name="course6" placeholder="NML210Y1Y" maxlength = "9" style="text-transform:uppercase" list="courseList" id="course6" onkeypress="populateDatalist(this)">
 			<br>
 		</form>
 
 		<datalist id="courseList"></datalist>
-
-		<script src="/js/dropdown.js"></script>
 
 
 		<select id ="filter" class="filterMenu">

@@ -236,7 +236,7 @@ Cobalt.prototype.searchCourses = function(search, callback, limit, skip) {
  * @return {void}
  */
 Cobalt.prototype.filterCourses = function(search, callback, limit, skip) {
-  limit = limit || 10;
+  limit = limit || 100;
   skip = skip || 0;
 
   // The 200 limit is imposed by the Cobalt API.
@@ -270,13 +270,13 @@ Cobalt.prototype.filterCourses = function(search, callback, limit, skip) {
     }
 
 
-    var courses = [];
-    for (var i = 0; i < data.length; i++) {
-      var course = new Course(data[i]);
-      courses.push(course);
-    }
+    // var courses = [];
+    // for (var i = 0; i < data.length; i++) {
+    //   var course = new Course(data[i]);
+    //   courses.push(course);
+    // }
 
-    callback(courses);
+    callback(data);
 
   }, query);
 };
