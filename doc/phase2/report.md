@@ -6,11 +6,11 @@ The scrum master is a member of the team who helps facilitate the work of other 
 
 ### Task breakdown:
 
-Small - Small tasks are those that will take 2 to 3 hours to complete at most. Things like the basic HTML layout and small front end components will fall under this category.
+**Small** - Small tasks are those that will take 2 to 3 hours to complete at most. Things like the basic HTML layout and small front end components will fall under this category.
 
-Medium - Medium tasks are tasks that are larger than small tasks, but can still be finished within the day. There are general ideas of how to approach the task, but a concrete solution needs to be created and implemented.
+**Medium** - Medium tasks are tasks that are larger than small tasks, but can still be finished within the day. There are general ideas of how to approach the task, but a concrete solution needs to be created and implemented.
 
-Large - Large tasks are tasks that will take longer than a day to complete. They are tasks whose details we have not yet fully worked out. Upon learning more, large tasks will *most likely* be broken down into smaller tasks, and their categories reassigned.
+**Large** - Large tasks are tasks that will take longer than a day to complete. They are tasks whose details we have not yet fully worked out. Upon learning more, large tasks will *most likely* be broken down into smaller tasks, and their categories reassigned.
 
 ### Other discussions:
 - Zenhub was suggested for its burndown chart and to help with issue tracking.
@@ -18,9 +18,9 @@ Large - Large tasks are tasks that will take longer than a day to complete. They
 - MVP: The minimum viable product will just display a list of courses that has the minimal amount of conflict.
 
 ## Sprint Backlog
-On October 20th, 2015 the team met on Slack to speak about the logistics of the project. We decided on building a timetable generator. The way it would work is that the user would enter up to six courses and our timetable generator will connect to an API with the course info, get the different sections available and get all permutations of the different timetables available and display them. The timetables will be sorted by the least time spent at school. We decided to make a web app. 
+On October 20th, 2015 the team met on Slack to speak about the logistics of the project. We decided on building a timetable generator. The way it would work is that the user would enter up to six courses and our timetable generator will connect to an API with the course info, get the different sections available and get all permutations of the different timetables available and display them. The timetables will be sorted by the least time spent at school. We decided to make a web app using node.js. We also decided on using an API (Cobalt) which would allow us to retrieve uoft course information.
 
-To do this, we decided that there will split the application into different sections: [frontend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Afrontend+) and [backend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Abackend+). We didn't decide on the order of tasks or the responsibilites. To make this easier, the TA suggested that we use Zenhub to be able to see which tasks are open and which ones have been completed. All the issues were created by Wayne so that we could work on them.
+To do this, we decided that there will split the application into different sections: [frontend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Afrontend+) and [backend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Abackend+). We didn't decide on the order of tasks or the responsibilites. Instead, Wayne created issues which served as guidelines on what we needed to accomplish. We self-assigned these as we saw tasks that needed to be completed. We created sub-issues where we realized that a larger task could be split into smaller parts. To make this process easier, the TA suggested that we use Zenhub to be able to see which tasks are open and which ones have been completed. We had originally attempted to use Trello, but Zenhub was integrated into Github, and had similar functionality. It also included a burndown chart, and some other handy features.
 
 ## Update Meetings
 
@@ -58,6 +58,13 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 **Ellen:** [Going to complete the dropdown list with the autocomplete functionality](#10).  
 **Jacky:** [Going to work on the View Course arrow buttons with Eugene](#13). [Going to work on the Generate button functionality with Eugene](#11). [Going to finalize and touch up the application layout](#6).  
 **Eugene:**  [Going to work on the View Course arrow buttons with Jacky](#13). [Going to work on the Generate button functionality with Jacky](#11).
+
+## Burndown Chart
+
+## Individual Burndown Links
+* [Wayne (Zsw007)](./burndown/Zsw007.png)
+* [Eugene (eu-wong)](./burndown/eu-wong.jpg)
+* [Samir (samirp91)](samirp91.jpg)
 
 ## Review & Retrospective
 1.  **How the plan evolved**
