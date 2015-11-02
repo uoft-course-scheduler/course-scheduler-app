@@ -48,15 +48,14 @@ router.get('/course/code/:courseCode', function(req, res) {
 // Find courses in department
 // example: CSC
 router.get('/filter/:q', function(req, res) {
-  console.log("sup");
-
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.filterCourses(req.params.q, function(a) {
-    for (var i = 0; i < a.length; i++) {
-      var str = JSON.stringify(a[i], null, 2);
-      res.write(str);
-    }
+    // for (var i = 0; i < a.length; i++) {
+    //   // var str = JSON.stringify(a[i], null, 2);
+    //   // res.write(str);
+      res.write(JSON.stringify(a));
+    // }
 
     res.end();
   });
