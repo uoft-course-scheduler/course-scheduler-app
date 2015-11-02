@@ -108,6 +108,7 @@ courses =
 function renderCourse(json, code) {
 	var sections = json.meeting_section,
 		section;
+	var course_code = json.course_code;
 	for (var i=0; i<sections.length; i++) {
 		if (sections[i].code == code) {
 			section = sections[i];
@@ -116,11 +117,11 @@ function renderCourse(json, code) {
 	}
 
 	if (sections) {
-		insertSection(section);
+		insertSection(section, course_code);
 	}
 }
 
-function insertSection(section) {
+function insertSection(section, course_code) {
 	var times = section.times;
 
 	for (var j=0; j<times.length; j++) {
@@ -145,11 +146,11 @@ function insertSection(section) {
 				secondHalf = Math.ceil(center),
 				firstHalfBlock = $("." + firstHalf).children(day), // Doing same thing as hourBlock -> hourRow just all in 1 line
 				secondHalfBlock = $("." + secondHalf).children(day);
-				firstHalfBlock.html(section.code + "<br>" + times[j].location);
+				firstHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location);
 				secondHalfBlock.html(section.instructors);
 		} else {
 			centerBlock = $("." + center).children(day);
-			centerBlock.html(section.code + "<br>" + times[j].location + "<br>" + section.instructors);
+			centerBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors);
 		}
 	}
 }
@@ -159,7 +160,8 @@ function renderCourses(json){
 	var schedule = json[0];
 	for (var i = 0; i < schedule.length; i++){
 		var section = schedule[i].meeting_section;
-		insertSection(section);
+		var course_code = schedule[i].course_code;
+		insertSection(section, course_code);
 	}
 }
 
