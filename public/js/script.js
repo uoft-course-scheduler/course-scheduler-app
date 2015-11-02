@@ -176,6 +176,8 @@ function insertSection(section, course_code) {
 function renderCourses(json){
 	clearTimeTable();
 	var schedule = json[0];
+	var numPermutations = schedule.length;
+	$('#total').html(numPermutations);
 	for (var i = 0; i < schedule.length; i++){
 		var section = schedule[i].meeting_section;
 		var course_code = schedule[i].course_code;
