@@ -65,6 +65,7 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 * [Wayne (Zsw007)](./burndown/Zsw007.png)
 * [Eugene (eu-wong)](./burndown/eu-wong.jpg)
 * [Samir (samirp91)](./burndown/samirp91.jpg)
+* [Jacky (Jaacky)](./burndown/Jaacky.jpg)
 
 ## Review & Retrospective
 1.  **How the plan evolved**
