@@ -160,7 +160,6 @@ function renderCourses(json){
 	for (var i = 0; i < schedule.length; i++){
 		var section = schedule[i].meeting_section;
 		insertSection(section);
-		console.log(section);
 	}
 }
 
@@ -227,65 +226,15 @@ function clearTimeTable() {
 	});
 }
 
-
-// USELESS
-function getCourses() {
-	var courseCodes = [];
-	$('.courses').each(function(index, element) {
-		value = $('.courses').eq(index).val();
-		if (value != '') { // Check if input field actually has a course selected
-			console.log(value);
-			courseCodes.push(value);
-		} else {
-			console.log("empty");
-		}
-	});
-
-	return courseCodes;
-}
-
-// USELESS
-function getCourseJson(courseCodes, jsonList, next) {
-	if (next) { // Not done retrieving courses
-		courseCode = courseCodes.pop();
-		apiURL = '/uoft/course/code/' + courseCode;
-
-		//jsonList.push(apiURL);
-		console.log("nope");
-		$.ajax({
-			url: apiURL,
-			dataType: 'json',
-			success: function(data) {
-				console.log("ajaxing");
-				jsonList.push(data);
-				if (courseCodes.length != 0) {
-					getCourseJson(courseCodes, jsonList, true)
-				} else {
-					getCourseJson(courseCodes, jsonList, false);
-				}
-			},
-			error: function(jqXHR, textError) {
-				console.log(textError);
-				console.log(jqXHR);
-			}
-		});
-
-	} else {
-		// Load permuatations into timetable
-		console.log("next is false: " + jsonList);
-		console.log(jsonList[0].code);
-	}
-}
-
 function getCourseCodesQuery() {
 	query = '';
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
 			query += value + ",";
-			console.log(query);
 		} else {
-			console.log("empty");
+			// If handling needed for no input
+			// Possible counter/incremenation to check if ANY courses were selected at all
 		}
 	});
 
@@ -297,10 +246,6 @@ $(document).ready(function() {
 
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
-		// courseCodes = getCourses();
-		// console.log("generate click:" + courseCodes);
-		// getCourseJson(courseCodes, json, true);
-
 		query = getCourseCodesQuery();
 		console.log(query);
 
@@ -308,7 +253,6 @@ $(document).ready(function() {
 			url: '/uoft/course/generate?courses=' + query,
 			dataType: 'json',
 			success: function(data) {
-				console.log(data);
 				renderCourses(data);
 			},
 			error: function(jqXHR, textError) {
@@ -316,7 +260,5 @@ $(document).ready(function() {
 				console.log(jqXHR);
 			}
 		});
-
 	});
-
 });
