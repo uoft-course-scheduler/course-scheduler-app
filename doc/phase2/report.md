@@ -60,6 +60,7 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 **Eugene:**  [Going to work on the View Course arrow buttons with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/issues/13). [Going to work on the Generate button functionality with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/issues/11).
 
 ## Burndown Chart
+The Y-Axis in this burndown chart represents the total number of story points we have for our entire MVP. Our small tasks are worth 1 point, our medium tasks are worth 2, and our large tasks are worth 3.
 
 ## Individual Burndown Links
 * [Wayne (Zsw007)](./burndown/Zsw007.png)
