@@ -173,11 +173,14 @@ function insertSection(section, course_code) {
 	}
 }
 
-function renderCourses(json){
+function renderCourses(json, index){
 	clearTimeTable();
-	var schedule = json[0];
+	var i = index || 0;
+	var schedule = json[i];
 	var numPermutations = schedule.length;
 	$('#total').html(numPermutations);
+	$('#index').html(index);
+	//var index = $('#index').html();
 	for (var i = 0; i < schedule.length; i++){
 		var section = schedule[i].meeting_section;
 		var course_code = schedule[i].course_code;
@@ -264,7 +267,6 @@ function getCourseCodesQuery() {
 }
 
 $(document).ready(function() {
-	renderCourses(courses);
 
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
@@ -275,12 +277,27 @@ $(document).ready(function() {
 			url: '/uoft/course/generate?courses=' + query,
 			dataType: 'json',
 			success: function(data) {
-				renderCourses(data);
+				renderCourses(data, 0);
 			},
 			error: function(jqXHR, textError) {
 				console.log(textError);
 				console.log(jqXHR);
 			}
 		});
+	});
+
+	$('#prevPermutation').on('click', function() {
+		var index = parseInt($('#index').html());
+		if (index > 1) {
+			$('#index').html(index - 1);
+		}
+	});
+
+	$('#nextPermutation').on('click', function() {
+		var index = parseInt($('#index').html());
+		var total = parseInt($('#total').html());
+		if (index < total) {
+			$('#index').html(index + 1);
+		}
 	});
 });
