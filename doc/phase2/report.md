@@ -62,6 +62,8 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 ## Burndown Chart
 The Y-Axis in this burndown chart represents the total number of story points we have for our entire MVP. Our small tasks are worth 1 point, our medium tasks are worth 2, and our large tasks are worth 3.
 
+![team burndown](./burndown/team_burndown.png)
+
 ## Individual Burndown Links
 * [Wayne (Zsw007)](./burndown/Zsw007.png)
 * [Eugene (eu-wong)](./burndown/eu-wong.jpg)
