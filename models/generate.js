@@ -37,6 +37,12 @@ function permutation(courses, arrangement) {
     for (var i = 0; i < courses[0].meeting_sections.length; i++) {
       // if its a lecture section, add the course.
       if (courses[0].meeting_sections[i].code[0] == 'L') {
+
+        // TODO: problem with empty meet sections.
+        if ((courses[0].meeting_sections.length == 0) || (courses[0].meeting_sections[i].times.length == 0)) {
+          continue;
+        }
+
         var course = {
           "meeting_section" : courses[0].meeting_sections[i],
           "course_code" : courses[0].code
