@@ -23,6 +23,8 @@ On October 20th, 2015 the team met on Slack to speak about the logistics of the 
 To do this, we decided that there will split the application into different sections: [frontend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Afrontend+) and [backend](https://github.com/csc301-fall-2015/project-team12-L0101/issues?utf8=%E2%9C%93&q=+label%3Abackend+). We didn't decide on the order of tasks or the responsibilites. To make this easier, the TA suggested that we use Zenhub to be able to see which tasks are open and which ones have been completed. All the issues were created by Wayne so that we could work on them.
 
 ## Update Meetings
+
+### Meeting 1
 **Scrum Master: Samir Patel**  
 **Date: October 30, 2015**  
 **Time: 9:00pm - 9:08am**  
@@ -38,4 +40,21 @@ To do this, we decided that there will split the application into different sect
 **Ellen** [Going to work on add course buttons functionality](#10)  
 **Jacky** [Currently updating Application layout](#6). [Going to work on view course arrow buttons](#13)  
 **Eugene** [Going to work on the view course design](#9)  
-Everyone is going to try to have their work done by tomorrow (October 31, 2015)  
+Everyone is going to try to have their work done by tomorrow (October 31, 2015)
+
+### Meeting 2
+**Scrum Master: Jacky Van**  
+**Date: October 30, 2015**  
+**Time: 5:00pm - 5:05am**  
+**1-2 minutes:** We were told what work had been completed by whom.  
+**Samir:** [Worked on and completed the View Course rendering function with Jacky](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).  
+**Wayne** [Worked on and completed getting permutations of the timetables with Eugene](#16)  
+**Ellen** [Worked and completed getting a dropdown list](#19) [Worked on getting autocomplete functional as courses are entered](#10)
+**Jacky** [Worked on and completed the View Course rendering function with Samir](#12)  
+**Eugene** [Worked on and completed getting permutations of the timetable with Wayne](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).  
+**3-5 minutes:** We were told who was completing the final few things which were left  
+**Samir:** Going to work on the team and review retrospective  
+**Wayne:** Going to work on team burndown  
+**Ellen:** [Going to complete the dropdown list with the autocomplete functionality](#10)  
+**Jacky:** [Going to work on the View Course arrow buttons with Eugene](#13). [Going to work on the Generate button functionality with Eugene](#11). [Going to finalize and touch up the application layout](#6).  
+**Eugene:**  [Going to work on the View Course arrow buttons with Jacky](#13). [Going to work on the Generate button functionality with Jacky](#11)
