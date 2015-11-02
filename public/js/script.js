@@ -155,13 +155,168 @@ function insertSection(section) {
 }
 
 function renderCourses(json){
+	clearTimeTable();
 	var schedule = json[0];
 	for (var i = 0; i < schedule.length; i++){
 		var section = schedule[i].meeting_section;
 		insertSection(section);
+		console.log(section);
 	}
+}
+
+// SNIPPET FROM https://css-tricks.com/snippets/javascript/remove-inline-styles/
+function remove_style(all) {
+  var i = all.length;
+  var j, is_hidden;
+
+  // Presentational attributes.
+  var attr = [
+    'align',
+    'background',
+    'bgcolor',
+    'border',
+    'cellpadding',
+    'cellspacing',
+    'color',
+    'face',
+    'height',
+    'hspace',
+    'marginheight',
+    'marginwidth',
+    'noshade',
+    'nowrap',
+    'valign',
+    'vspace',
+    'width',
+    'vlink',
+    'alink',
+    'text',
+    'link',
+    'frame',
+    'frameborder',
+    'clear',
+    'scrolling',
+    'style'
+  ];
+
+  var attr_len = attr.length;
+
+  while (i--) {
+    is_hidden = (all[i].style.display === 'none');
+
+    j = attr_len;
+
+    while (j--) {
+      all[i].removeAttribute(attr[j]);
+    }
+
+    // Re-hide display:none elements,
+    // so they can be toggled via JS.
+    if (is_hidden) {
+      all[i].style.display = 'none';
+      is_hidden = false;
+    }
+  }
+}
+
+function clearTimeTable() {
+	blocks = $('#Schedule').find('td');
+	remove_style(blocks);
+	blocks.each(function(index, element) {
+		blocks.eq(index).html('');
+	});
+}
+
+
+// USELESS
+function getCourses() {
+	var courseCodes = [];
+	$('.courses').each(function(index, element) {
+		value = $('.courses').eq(index).val();
+		if (value != '') { // Check if input field actually has a course selected
+			console.log(value);
+			courseCodes.push(value);
+		} else {
+			console.log("empty");
+		}
+	});
+
+	return courseCodes;
+}
+
+// USELESS
+function getCourseJson(courseCodes, jsonList, next) {
+	if (next) { // Not done retrieving courses
+		courseCode = courseCodes.pop();
+		apiURL = '/uoft/course/code/' + courseCode;
+
+		//jsonList.push(apiURL);
+		console.log("nope");
+		$.ajax({
+			url: apiURL,
+			dataType: 'json',
+			success: function(data) {
+				console.log("ajaxing");
+				jsonList.push(data);
+				if (courseCodes.length != 0) {
+					getCourseJson(courseCodes, jsonList, true)
+				} else {
+					getCourseJson(courseCodes, jsonList, false);
+				}
+			},
+			error: function(jqXHR, textError) {
+				console.log(textError);
+				console.log(jqXHR);
+			}
+		});
+
+	} else {
+		// Load permuatations into timetable
+		console.log("next is false: " + jsonList);
+		console.log(jsonList[0].code);
+	}
+}
+
+function getCourseCodesQuery() {
+	query = '';
+	$('.courses').each(function(index, element) {
+		value = $('.courses').eq(index).val();
+		if (value != '') { // Check if input field actually has a course selected
+			query += value + ",";
+			console.log(query);
+		} else {
+			console.log("empty");
+		}
+	});
+
+	return query.substring(0, query.length-1);
 }
 
 $(document).ready(function() {
 	renderCourses(courses);
+
+	var courseCodes, json = [];
+	$('#generateSchedule').on('click', function() {
+		// courseCodes = getCourses();
+		// console.log("generate click:" + courseCodes);
+		// getCourseJson(courseCodes, json, true);
+
+		query = getCourseCodesQuery();
+		console.log(query);
+
+		$.ajax({
+			url: '/uoft/course/generate?courses=' + query,
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				renderCourses(data);
+			},
+			error: function(jqXHR, textError) {
+				console.log(textError);
+				console.log(jqXHR);
+			}
+		});
+
+	});
+
 });
