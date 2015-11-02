@@ -10,7 +10,6 @@
       dataList.innerHTML = "";
       
       //create new list
-      console.log(input.value);
       populate(input, dataList);
     }
  }
