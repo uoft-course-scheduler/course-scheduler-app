@@ -121,6 +121,22 @@ function renderCourse(json, code) {
 	}
 }
 
+function hashCode(str) { // java String#hashCode
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+} 
+
+function intToRGB(i){
+    var c = (i & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase();
+
+    return "00000".substring(0, 6 - c.length) + c;
+}
+
 function insertSection(section, course_code) {
 	var times = section.times;
 
@@ -133,10 +149,12 @@ function insertSection(section, course_code) {
 			even = ( (times[j].duration % 2) == 0);
 
 		while (time != end) {
+      var colour = intToRGB(hashCode(course_code));
+      console.log(colour);
 			var hourRow = $("." + time);
 			hourBlock = hourRow.children(day);
 			hourBlock.css("border", "none");
-			hourBlock.css("background-color", "#c0dfd9");
+			hourBlock.css("background-color", "#" + colour);
 			hourBlock.css("padding", "5px");
 			time += 1;
 		}
