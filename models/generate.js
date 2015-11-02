@@ -36,7 +36,6 @@ function permutation(courses, arrangement) {
   } else {
       // check to see that course is not empty i.e wrong course
       if (courses[0].meeting_sections != null){
-        console.log("L1", courses);
         //check to see that there are meeting sections for the course
         if (courses[0].meeting_sections.length != 0){
           for (var i = 0; i < courses[0].meeting_sections.length; i++) {
