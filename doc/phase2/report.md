@@ -50,8 +50,8 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 **Samir:** [Worked on and completed the View Course rendering function with Jacky](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).  
 **Wayne:** [Worked on and completed getting permutations of the timetables with Eugene](#16).  
 **Ellen:** [Worked and completed getting a dropdown list](#19) [Worked on getting autocomplete functional as courses are entered](#10).
-**Jacky:** [Worked on and completed the View Course rendering function with Samir](#12).  
-**Eugene:** [Worked on and completed getting permutations of the timetable with Wayne](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).  
+**Eugene:** [Worked on and completed getting permutations of the timetable with Wayne](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).
+**Jacky:** [Worked on and completed the View Course rendering function with Samir](#12).
 **3-5 minutes:** We were told who was completing the final few things which were left  
 **Samir:** Going to work on the team and review retrospective  
 **Wayne:** Going to work on team burndown  
