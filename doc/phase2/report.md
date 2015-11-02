@@ -29,17 +29,17 @@ To do this, we decided that there will split the application into different sect
 **Date: October 30, 2015**  
 **Time: 9:00pm - 9:08am**  
 **1-3 minutes:** We were told who did what work.  
-**Samir:** [Worked on the frontend display](#5). [Worked on Generate button](#8). [Worked on Add Course button](#7). [Worked on creating our own API with Wayne](#18).  
-**Wayne:** [Added Bootstrap](#23). [Worked on creating our own API with Samir](#18). [Worked on calling the U of API with Ellen](#15).  
-**Ellen:** [Worked on calling the U Of T API with Wayne](#15)  
-**Jacky:** [Updated the frontend display](#5). [Updated initial structure](#7). [Updated Generate Button design](#8). [Added Functions to display a course in timetable and a sample course with Eugene](https://github.com/csc301-fall-2015/project-team12-L0101/commit/d8afe919844e795add345ba7c8adb98f146bb316).  
+**Samir:** [Worked on the frontend display](https://github.com/csc301-fall-2015/project-team12-L0101/issues/5). [Worked on Generate button](https://github.com/csc301-fall-2015/project-team12-L0101/issues/8). [Worked on Add Course button](https://github.com/csc301-fall-2015/project-team12-L0101/issues/7). [Worked on creating our own API with Wayne](https://github.com/csc301-fall-2015/project-team12-L0101/issues/18).  
+**Wayne:** [Added Bootstrap](https://github.com/csc301-fall-2015/project-team12-L0101/issues/23). [Worked on creating our own API with Samir](https://github.com/csc301-fall-2015/project-team12-L0101/issues/18). [Worked on calling the U of API with Ellen](https://github.com/csc301-fall-2015/project-team12-L0101/issues/15).  
+**Ellen:** [Worked on calling the U Of T API with Wayne](https://github.com/csc301-fall-2015/project-team12-L0101/issues/15)  
+**Jacky:** [Updated the frontend display](https://github.com/csc301-fall-2015/project-team12-L0101/issues/5). [Updated initial structure](https://github.com/csc301-fall-2015/project-team12-L0101/issues/7). [Updated Generate Button design](https://github.com/csc301-fall-2015/project-team12-L0101/issues/8). [Added Functions to display a course in timetable and a sample course with Eugene](https://github.com/csc301-fall-2015/project-team12-L0101/commit/d8afe919844e795add345ba7c8adb98f146bb316).  
 **Eugen:** [Added the Readme.md with the description of Scrum Master and small, medium, large tasks](https://github.com/csc301-fall-2015/project-team12-L0101/commit/0e07a33a562cc161ccd14c9d06091aabe5ca288b). [Added Functions to display a course in timetable and a sample course with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/commit/d8afe919844e795add345ba7c8adb98f146bb316).  
 **3-8 minutes** We were told who was doing what work.  
-**Samir:** [Going to work on adding the course list design](#19)  
-**Wayne:** [Going to work on permutations of possible course arrangements](#16)  
-**Ellen:** [Going to work on add course buttons functionality](#10)  
-**Jacky:** [Currently updating Application layout](#6). [Going to work on view course arrow buttons](#13)  
-**Eugene:** [Going to work on the view course design](#9)  
+**Samir:** [Going to work on adding the course list design](https://github.com/csc301-fall-2015/project-team12-L0101/issues/19)  
+**Wayne:** [Going to work on permutations of possible course arrangements](https://github.com/csc301-fall-2015/project-team12-L0101/issues/16)  
+**Ellen:** [Going to work on add course buttons functionality](https://github.com/csc301-fall-2015/project-team12-L0101/issues/10)  
+**Jacky:** [Currently updating Application layout](https://github.com/csc301-fall-2015/project-team12-L0101/issues/6). [Going to work on view course arrow buttons](https://github.com/csc301-fall-2015/project-team12-L0101/issues/13)  
+**Eugene:** [Going to work on the view course design](https://github.com/csc301-fall-2015/project-team12-L0101/issues/9)  
 Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 
 ### Meeting 2
@@ -47,17 +47,17 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 **Date: October 30, 2015**  
 **Time: 5:00pm - 5:05am**  
 **1-2 minutes:** We were told what work had been completed by whom.  
-**Samir:** [Worked on and completed the View Course rendering function with Jacky](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).  
-**Wayne:** [Worked on and completed getting permutations of the timetables with Eugene](#16).  
-**Ellen:** [Worked and completed getting a dropdown list](#19). [Worked on getting autocomplete functional as courses are entered](#10).
-**Eugene:** [Worked on and completed getting permutations of the timetable with Wayne](#12). [Worked on and completed getting and sorting the timetables by times spent at school](#44).
-**Jacky:** [Worked on and completed the View Course rendering function with Samir](#12).
+**Samir:** [Worked on and completed the View Course rendering function with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/issues/12). [Worked on and completed getting and sorting the timetables by times spent at school](https://github.com/csc301-fall-2015/project-team12-L0101/issues/44).  
+**Wayne:** [Worked on and completed getting permutations of the timetables with Eugene](https://github.com/csc301-fall-2015/project-team12-L0101/issues/16).  
+**Ellen:** [Worked and completed getting a dropdown list](https://github.com/csc301-fall-2015/project-team12-L0101/issues/19). [Worked on getting autocomplete functional as courses are entered](https://github.com/csc301-fall-2015/project-team12-L0101/issues/10).  
+**Eugene:** [Worked on and completed getting permutations of the timetable with Wayne](https://github.com/csc301-fall-2015/project-team12-L0101/issues/12). [Worked on and completed getting and sorting the timetables by times spent at school](https://github.com/csc301-fall-2015/project-team12-L0101/issues/44).  
+**Jacky:** [Worked on and completed the View Course rendering function with Samir](https://github.com/csc301-fall-2015/project-team12-L0101/issues/12).  
 **3-5 minutes:** We were told who was completing the final few things which were left  
 **Samir:** Going to work on the team and review retrospective.  
 **Wayne:** Going to work on team burndown.  
-**Ellen:** [Going to complete the dropdown list with the autocomplete functionality](#10).  
-**Jacky:** [Going to work on the View Course arrow buttons with Eugene](#13). [Going to work on the Generate button functionality with Eugene](#11). [Going to finalize and touch up the application layout](#6).  
-**Eugene:**  [Going to work on the View Course arrow buttons with Jacky](#13). [Going to work on the Generate button functionality with Jacky](#11).
+**Ellen:** [Going to complete the dropdown list with the autocomplete functionality](https://github.com/csc301-fall-2015/project-team12-L0101/issues/10).  
+**Jacky:** [Going to work on the View Course arrow buttons with Eugene](https://github.com/csc301-fall-2015/project-team12-L0101/issues/13). [Going to work on the Generate button functionality with Eugene](https://github.com/csc301-fall-2015/project-team12-L0101/issues/11). [Going to finalize and touch up the application layout](https://github.com/csc301-fall-2015/project-team12-L0101/issues/6).  
+**Eugene:**  [Going to work on the View Course arrow buttons with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/issues/13). [Going to work on the Generate button functionality with Jacky](https://github.com/csc301-fall-2015/project-team12-L0101/issues/11).
 
 ## Burndown Chart
 
@@ -69,24 +69,24 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 ## Review & Retrospective
 1.  **How the plan evolved**
     1. Within our initial plan, there were a few issues which we didn't address and 
-    implement. The first one was [displaying course on timetable using inputted data](#41). 
+    implement. The first one was [displaying course on timetable using inputted data](https://github.com/csc301-fall-2015/project-team12-L0101/issues/41). 
     The reason we didn't implement this was because we realized that there 
     wouldn't really be a need for this as we will be getting all the courses from the
     U of T API so the courses would already be in a JSON format with all the required
-    data. Something we didn't fully complete was the [sorting permutations](#44)
+    data. Something we didn't fully complete was the [sorting permutations](https://github.com/csc301-fall-2015/project-team12-L0101/issues/44)
     requirement because for this task, we only decided to be able to sort permutations 
     according to the time spent at school and decided that we would do sorting by other
-    options later. The same goes for [our own API for generating courses](#17) since
+    options later. The same goes for [our own API for generating courses](https://github.com/csc301-fall-2015/project-team12-L0101/issues/17) since
     there will be many different ways to generate the timetables according to the
-    options and for [timetable conflict checking](#49) since our main priority was to
+    options and for [timetable conflict checking](https://github.com/csc301-fall-2015/project-team12-L0101/issues/49) since our main priority was to
     only be able to get the time spent at school over the week and the ability to sort
     it by that time.
     2. There were a few tasks we split into subtasks. The one which has been split (and
-    will be split again in the next phase) is the [sorting](#44) task since this has 
+    will be split again in the next phase) is the [sorting](https://github.com/csc301-fall-2015/project-team12-L0101/issues/44) task since this has 
     many different ways that the permutations could be sorted. So far, we've decided 
-    to sort it by [time](#50) and by [least amount of conflict](#49). We also decided
-    to sub-task the [view course](#12) rendering into two subtasks, [view single course by JSON](#35)
-    and [view single course by user-inputted data](#41). We decided to get rid of the
+    to sort it by [time](https://github.com/csc301-fall-2015/project-team12-L0101/issues/50) and by [least amount of conflict](#https://github.com/csc301-fall-2015/project-team12-L0101/issues/9). We also decided
+    to sub-task the [view course](https://github.com/csc301-fall-2015/project-team12-L0101/issues/12) rendering into two subtasks, [view single course by JSON](https://github.com/csc301-fall-2015/project-team12-L0101/issues/35)
+    and [view single course by user-inputted data](https://github.com/csc301-fall-2015/project-team12-L0101/issues/41). We decided to get rid of the
     second one since we realized that we wouldn't have a case where we would need to 
     render a course by user-inputted data since we will be getting all our courses from
     the U of T API. The reason we decided to subtask this was because it would be
