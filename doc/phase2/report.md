@@ -69,6 +69,7 @@ The Y-Axis in this burndown chart represents the total number of story points we
 * [Eugene (eu-wong)](./burndown/eu-wong.jpg)
 * [Samir (samirp91)](./burndown/samirp91.jpg)
 * [Jacky (Jaacky)](./burndown/Jaacky.jpg)
+* [Ellen (ellenupp)](./burndown/ellenupp.png)
 
 ## Review & Retrospective
 1.  **How the plan evolved**
