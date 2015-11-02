@@ -7,7 +7,7 @@
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('courseList');
-var input = document.getElementById('dropdown');
+//var input = document.getElementById('dropdown');
 
 
 // Create a new XMLHttpRequest.
@@ -32,16 +32,16 @@ request.onreadystatechange = function(response) {
       });
 
       // Update the placeholder text.
-      input.placeholder = "enter course";
+      //input.placeholder = "enter course";
     } else {
       // An error occured :(
-      input.placeholder = "Error loading options";
+      //input.placeholder = "Error loading options";
     }
   }
 };
 
 // Update the placeholder text.
-input.placeholder = "Loading options...";
+//input.placeholder = "Loading options...";
 
 // Set up and make the request.
 request.open('GET', '/js/courses.json', true);
