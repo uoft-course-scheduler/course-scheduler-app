@@ -58,3 +58,53 @@ Everyone is going to try to have their work done by tomorrow (October 31, 2015)
 **Ellen:** [Going to complete the dropdown list with the autocomplete functionality](#10).  
 **Jacky:** [Going to work on the View Course arrow buttons with Eugene](#13). [Going to work on the Generate button functionality with Eugene](#11). [Going to finalize and touch up the application layout](#6).  
 **Eugene:**  [Going to work on the View Course arrow buttons with Jacky](#13). [Going to work on the Generate button functionality with Jacky](#11).
+
+## Review & Retrospective
+1.  **How the plan evolved**
+    1. Within our initial plan, there were a few issues which we didn't address and 
+    implement. The first one was [displaying course on timetable using inputted data](#41). 
+    The reason we didn't implement this was because we realized that there 
+    wouldn't really be a need for this as we will be getting all the courses from the
+    U of T API so the courses would already be in a JSON format with all the required
+    data. Something we didn't fully complete was the [sorting permutations](#44)
+    requirement because for this task, we only decided to be able to sort permutations 
+    according to the time spent at school and decided that we would do sorting by other
+    options later. The same goes for [our own API for generating courses](#17) since
+    there will be many different ways to generate the timetables according to the
+    options and for [timetable conflict checking](#49) since our main priority was to
+    only be able to get the time spent at school over the week and the ability to sort
+    it by that time.
+    2. There were a few tasks we split into subtasks. The one which has been split (and
+    will be split again in the next phase) is the [sorting](#44) task since this has 
+    many different ways that the permutations could be sorted. So far, we've decided 
+    to sort it by [time](#50) and by [least amount of conflict](#49). We also decided
+    to sub-task the [view course](#12) rendering into two subtasks, [view single course by JSON](#35)
+    and [view single course by user-inputted data](#41). We decided to get rid of the
+    second one since we realized that we wouldn't have a case where we would need to 
+    render a course by user-inputted data since we will be getting all our courses from
+    the U of T API. The reason we decided to subtask this was because it would be
+    easier for us to display one single course and after that, we could go through a 
+    list and input each one of the courses using the same method. The thought process 
+    was a lot simpler.  
+
+2. **Reflection**
+    1. At the beginning of the initial process, we decided to use Trello to keep 
+    track of issues and we ran this by the TA. She suggest that we use ZenHub so 
+    we tried it and it worked pretty great. It was very easy for us to see which tasks
+    were being worked on, which tasks were already assigned to someone and which tasks
+    were not being worked on. This gave us a very clear visual and allowed us to set
+    our priorities and work on what was suitable for us. Also for the initial meeting,
+    we decided to make a new group in Slack which allowed us to refer back to what was
+    said when creating the issues and writing up the sprint backlog.  
+    2. One thing everybody agreed on which was weak was communication. We all expected
+    the issues to be a concrete way to do work so that when someone finished an issue
+    the commit message would be helpful enough so that the person using that code
+    would understand what still needed to be done. But what ended up happening in 
+    one case was that the code was not fully understood and users had to clarify with
+    other users as to why a code was written in some specific way or if some specific
+    feature had been implemented.  
+    3. The way we're going to tackle the communication problem is by opening a new
+    channel in Slack which is dedicated to recording updates in general. This will be
+    useful as many of us don't like to write long commit messages and if someone was
+    to forget the reason for a PR or commit, they could just recheck the channel for
+    a detailed explanation.
