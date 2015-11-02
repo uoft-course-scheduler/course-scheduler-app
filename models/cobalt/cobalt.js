@@ -252,8 +252,6 @@ Cobalt.prototype.filterCourses = function(search, callback, limit, skip) {
     key : this.key
   };
 
-  console.log(query);
-
   var FILTER_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
