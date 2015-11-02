@@ -15,7 +15,7 @@ Large - Large tasks are tasks that will take longer than a day to complete. They
 ### Other discussions:
 - Zenhub was suggested for its burndown chart and to help with issue tracking.
 
-- MVP: The minimum viable product will jsut display a list of courses that has the minimal amount of conflict.
+- MVP: The minimum viable product will just display a list of courses that has the minimal amount of conflict.
 
 ## Sprint Backlog
 On October 20th, 2015 the team met on Slack to speak about the logistics of the project. We decided on building a timetable generator. The way it would work is that the user would enter up to six courses and our timetable generator will connect to an API with the course info, get the different sections available and get all permutations of the different timetables available and display them. The timetables will be sorted by the least time spent at school. We decided to make a web app. 
