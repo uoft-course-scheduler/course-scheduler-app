@@ -222,6 +222,67 @@ Cobalt.prototype.searchCourses = function(search, callback, limit, skip) {
   }, query);
 };
 
+
+/**
+ * Similar to search but uses the filter function from the cobalt api
+ * 
+ * @param  {String}   search   the code, name, or description to search on.
+ * @param  {Function} callback the function to call with the array of courses
+ *                             passed as argument.
+ * @param {Number}    limit    optional. defaults to 10. The number of courses 
+ *                             to return in the array, max 200.
+ * @param {Number}    skip     optional. defaults to 0. The number of courses to 
+ *                             skip from the list of all courses.
+ * @return {void}
+ */
+Cobalt.prototype.filterCourses = function(search, callback, limit, skip) {
+  limit = limit || 10;
+  skip = skip || 0;
+
+  // The 200 limit is imposed by the Cobalt API.
+  if (limit > 200) {
+    limit = 200;
+  }
+
+
+  var query = {
+    q : search,
+    limit : limit,
+    skip : skip,
+    key : this.key
+  };
+
+  console.log(query);
+
+  var FILTER_COURSES = {
+  host: 'cobalt.qas.im',
+  port: 443,
+  path: '/api/1.0/courses/filter',
+  headers: {
+    'Accept': 'application/json'
+  }
+};
+
+
+  get(FILTER_COURSES, function(data) {
+    // On error.
+    if (data === null) {
+      callback([]);
+      return;
+    }
+
+
+    var courses = [];
+    for (var i = 0; i < data.length; i++) {
+      var course = new Course(data[i]);
+      courses.push(course);
+    }
+
+    callback(courses);
+
+  }, query);
+};
+
 /**
  * Send a GET request to the http resource as specified in options. Parses the 
  * received data as json and calls the callback function with the parsed json
