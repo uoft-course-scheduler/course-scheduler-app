@@ -149,13 +149,13 @@ function insertSection(section, course_code) {
 			even = ( (times[j].duration % 2) == 0);
 
 		while (time != end) {
-      var colour = intToRGB(hashCode(course_code));
-      console.log(colour);
+			var colour = intToRGB(hashCode(course_code));
+			console.log(colour);
 			var hourRow = $("." + time);
 			hourBlock = hourRow.children(day);
 			hourBlock.css("border", "none");
 			hourBlock.css("background-color", "#" + colour);
-			hourBlock.css("padding", "5px");
+			hourBlock.css("padding", "15px");
 			time += 1;
 		}
 
