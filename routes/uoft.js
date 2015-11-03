@@ -51,10 +51,11 @@ router.get('/filter/:q', function(req, res) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.filterCourses(req.params.q, function(a) {
-    for (var i = 0; i < a.length; i++) {
-      var str = JSON.stringify(a[i], null, 2);
-      res.write(str);
-    }
+    // for (var i = 0; i < a.length; i++) {
+    //   // var str = JSON.stringify(a[i], null, 2);
+    //   // res.write(str);
+      res.write(JSON.stringify(a));
+    // }
 
     res.end();
   });
