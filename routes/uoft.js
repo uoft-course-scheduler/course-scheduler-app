@@ -6,7 +6,8 @@ var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 var Generate = require(path.join(__dirname, '../models/generate'));
 var Time = require(path.join(__dirname, '../models/time'));
-var TimeSort = require(path.join(__dirname, '../models/timesort'));
+var Sort = require(path.join(__dirname, '../models/sort'));
+var Conflict = require(path.join(__dirname, '../models/conflict'));
 
 
 router.get('/course/list', function(req, res, next) {
@@ -112,7 +113,7 @@ router.get('/course/generate', function(req, res, next) {
       //   console.log("time.a[",i,"] is ", time.a[i]);
       // }
 
-      var timesort = new TimeSort(time.a);
+      var timesort = new Sort(time.a, "time");
       // console.log(timesort.a);
 
       
