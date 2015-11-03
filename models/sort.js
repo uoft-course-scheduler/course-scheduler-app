@@ -5,8 +5,13 @@
 * @param {Array} a the array to be sorted
 */
 
-var Sort = function(a) {
-	this.a = timeSort(a);
+var Sort = function(a, filter) {
+	if (filter == "time"){
+		this.a = timeSort(a);
+	}
+	if (filter == "conflict"){
+		this.a = conflictSort(a);
+	}
 }
 
 /**
@@ -15,6 +20,13 @@ var Sort = function(a) {
  * @return {Array}    an array sorted by least time spent at school.
  */
 function timeSort(a){
+	a.sort(function(a, b){
+		return parseFloat(a.time) - parseFloat(b.time);
+	});
+	return a;
+}
+
+function conflictSort(a){
 	a.sort(function(a, b){
 		return parseFloat(a.conflict) - parseFloat(b.conflict);
 	});

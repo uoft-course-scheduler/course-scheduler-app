@@ -113,7 +113,7 @@ router.get('/course/generate', function(req, res, next) {
       //   console.log("time.a[",i,"] is ", time.a[i]);
       // }
 
-      var timesort = new Sort(time.a);
+      var timesort = new Sort(time.a, "time");
       // console.log(timesort.a);
 
       
