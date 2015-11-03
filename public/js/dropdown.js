@@ -1,5 +1,5 @@
 /**
- * Get the course names from courses.json and populate the dropdown lists
+ * Populate the dropdown list based on user input
  *
  */
 
