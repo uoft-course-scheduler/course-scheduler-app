@@ -5,7 +5,7 @@
 * @param {Array} a the array to be sorted
 */
 
-var TimeSort = function(a) {
+var Sort = function(a) {
 	this.a = timeSort(a);
 }
 
@@ -16,9 +16,9 @@ var TimeSort = function(a) {
  */
 function timeSort(a){
 	a.sort(function(a, b){
-		return parseFloat(a.time) - parseFloat(b.time);
+		return parseFloat(a.conflict) - parseFloat(b.conflict);
 	});
 	return a;
 }
 
-module.exports = TimeSort;
+module.exports = Sort;
