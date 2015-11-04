@@ -189,12 +189,12 @@ function insertSection(section, course_code, classTimes) {
 					}
 					firstHalfBlock = $("." + conflictStart).children(day)
 					if (conflictStart == start){
-						firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
+						firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>");
 						secondHalfBlock.html(conflictFirstHalf);
 					}
 					else{
 						firstHalfBlock.html("CONFLICT<br>" + conflictFirstHalf);
-						secondHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
+						secondHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>");
 					}
 					
 				}
