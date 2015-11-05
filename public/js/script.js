@@ -184,9 +184,10 @@ function insertSection(section, course_code, classTimes) {
 					var conflictFirstHalf = "";
 					for (var i = conflictStart; i < secondHalfBlock[0].end; i++){
 						var tempBlock = $("." + i).children(day);
-						conflictFirstHalf += tempBlock[0].innerHTML;
+						conflictFirstHalf += tempBlock[0].innerHTML + "<br>";
 						tempBlock.css("background-color", "#FF0000");
 					}
+					conflictFirstHalf = removeConflictStr(conflictFirstHalf);
 					firstHalfBlock = $("." + conflictStart).children(day)
 					if (conflictStart == start){
 						firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>");
@@ -217,13 +218,14 @@ function insertSection(section, course_code, classTimes) {
 					conflictFirstHalf += tempBlock[0].innerHTML + "<br>";
 					tempBlock.css("background-color", "#FF0000");
 				}
+				conflictFirstHalf = removeConflictStr(conflictFirstHalf);
 				firstHalfBlock = $("." + conflictStart).children(day)
 				if (oneHour){
 					firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>" + conflictFirstHalf);
 				}
 				else if (conflictStart == start){
 					firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
-
+					centerBlock.html(conflictFirstHalf);
 				}
 				else{
 					firstHalfBlock.html("CONFLICT<br>" + conflictFirstHalf);
@@ -242,6 +244,14 @@ function getTime(time){
 		retTime = 12;
 	}
 	return retTime;
+}
+
+function removeConflictStr(conflictStr){
+	var conflictString = "CONFLICT<br>";
+	if (conflictStr.indexOf(conflictString) > -1){
+		conflictStr = conflictStr.substring(12);
+	}
+	return conflictStr;
 }
 
 function renderCourses(json, index){
