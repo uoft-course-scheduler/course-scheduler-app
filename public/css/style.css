@@ -49,36 +49,38 @@ a {
    	float: left;
    	text-align: center;
    }
-   .courses {
-   	position: relative;
-   	margin-top: 15px;
-   border: 2px solid #000000;
-   background: #ffffff;
-   -webkit-border-radius: 0px;
-   -moz-border-radius: 0px;
-   border-radius: 0px;
-   color: #000000;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   padding:8px;
-   margin-bottom:20px;
-   width:100%;
-   }
 
-   .filterMenu {
-   border: 2px solid #000000;
-   background: #ffffff;
-   -webkit-border-radius: 0px;
-   -moz-border-radius: 0px;
-   border-radius: 0px;
-   color: #000000;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
-   padding:8px;
-   margin-bottom:20px;
-   width:100%;
+.courses {
+	position: relative;
+	border: 2px solid #000000;
+	background: #ffffff;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	color: #000000;
+	-webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+	-moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+	box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+	padding:8px;
+	margin-bottom:5px;
+   	margin-top: 5px;
+	width:100%;
+}
+
+	.filterMenu {
+		border: 2px solid #000000;
+		background: #ffffff;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
+		color: #000000;
+		-webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		-moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+		padding:8px;
+		margin-top: 15px;
+		margin-bottom:20px;
+		width:100%;
    }
 
 	#sides{
