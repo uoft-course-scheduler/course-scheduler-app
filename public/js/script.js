@@ -105,21 +105,21 @@ courses =
 
 
 
-function renderCourse(json, code) {
-	var sections = json.meeting_section,
-		section;
-	var course_code = json.course_code;
-	for (var i=0; i<sections.length; i++) {
-		if (sections[i].code == code) {
-			section = sections[i];
-			break;
-		}
-	}
+// function renderCourse(json, code) {
+// 	var sections = json.meeting_section,
+// 		section;
+// 	var course_code = json.course_code;
+// 	for (var i=0; i<sections.length; i++) {
+// 		if (sections[i].code == code) {
+// 			section = sections[i];
+// 			break;
+// 		}
+// 	}
 
-	if (sections) {
-		insertSection(section, course_code);
-	}
-}
+// 	if (sections) {
+// 		insertSection(section, course_code);
+// 	}
+// }
 
 function hashCode(str) { // java String#hashCode
     var hash = 0;
@@ -254,19 +254,63 @@ function removeConflictStr(conflictStr){
 	return conflictStr;
 }
 
-function renderCourses(json, index){
-	clearTimeTable();
+var FALL_TERM = [];
+var WINTER_TERM = [];
+
+function renderTimetable(json, index){
 	var i = index - 1 || 0;
-	var schedule = json[i];
+	var courses = json[i];
 	var numPermutations = json.length;
 	$('#total').html(numPermutations);
 	$('#index').html(index);
-	var classTimes = [];
-	//var index = $('#index').html();
-	for (var i = 0; i < schedule.length; i++){
+	// var classTimes = [];
+	// var index = $('#index').html();
+
+	// for (var j = 0; j < schedule.length; j++){
 		
-		var section = schedule[i].meeting_section;
-		var course_code = schedule[i].course_code;
+	// 	var section = schedule[j].meeting_section;
+	// 	var course_code = schedule[j].course_code;
+	// 	insertSection(section, course_code, classTimes);
+	// }
+
+	splitTerms(courses);
+	if ($('#winterToggle').hasClass('active')) {
+		renderTerm(WINTER_TERM);
+	} else {
+		renderTerm(FALL_TERM);
+	}
+
+}
+
+function splitTerms(courses) {
+	FALL_TERM = [];
+	WINTER_TERM = [];
+	for (var i=0; i<courses.length; i++) {
+		var course_code = courses[i].course_code;
+		// console.log(course_code);
+		var semester = course_code.charAt(course_code.length - 1);
+		// console.log(semester);
+		if (semester == 'F') {
+			console.log("IN FALL");
+			console.log(course_code);
+			FALL_TERM.push(courses[i]);
+		}
+		else if (semester == 'S') {
+			WINTER_TERM.push(courses[i]);
+		}
+		else {
+			FALL_TERM.push(courses[i]);
+			WINTER_TERM.push(courses[i]);
+		}
+	}
+}
+
+function renderTerm(term) {
+	clearTimeTable();
+	var classTimes = []
+	for (var i=0; i<term.length; i++) {
+		var section = term[i].meeting_section;
+		var course_code = term[i].course_code;
 		insertSection(section, course_code, classTimes);
 	}
 }
@@ -362,7 +406,7 @@ $(document).ready(function() {
 			success: function(data) {
 				DATA = data;
 				console.log(DATA.length);
-				renderCourses(data, 1);
+				renderTimetable(data, 1);
 			},
 			error: function(jqXHR, textError) {
 				console.log(textError);
@@ -376,7 +420,7 @@ $(document).ready(function() {
 		if (index > 1) {
 			var newIndex = index - 1;
 			$('#index').html(newIndex);
-			renderCourses(DATA, newIndex)
+			renderTimetable(DATA, newIndex)
 		}
 	});
 
@@ -386,7 +430,15 @@ $(document).ready(function() {
 		if (index < total) {
 			var newIndex = index + 1;
 			$('#index').html(newIndex);
-			renderCourses(DATA, newIndex);
+			renderTimetable(DATA, newIndex);
 		}
+	});
+
+	$('#fallToggle').on('click', function() {
+		renderTerm(FALL_TERM);
+	});
+
+	$('#winterToggle').on('click', function() {
+		renderTerm(WINTER_TERM);
 	});
 });
