@@ -6,7 +6,8 @@ var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 var Generate = require(path.join(__dirname, '../models/generate'));
 var Time = require(path.join(__dirname, '../models/time'));
-var TimeSort = require(path.join(__dirname, '../models/timesort'));
+var Sort = require(path.join(__dirname, '../models/sort'));
+var Conflict = require(path.join(__dirname, '../models/conflict'));
 
 
 router.get('/course/list', function(req, res, next) {
@@ -48,15 +49,14 @@ router.get('/course/code/:courseCode', function(req, res) {
 // Find courses in department
 // example: CSC
 router.get('/filter/:q', function(req, res) {
-  console.log("sup");
-
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.filterCourses(req.params.q, function(a) {
-    for (var i = 0; i < a.length; i++) {
-      var str = JSON.stringify(a[i], null, 2);
-      res.write(str);
-    }
+    // for (var i = 0; i < a.length; i++) {
+    //   // var str = JSON.stringify(a[i], null, 2);
+    //   // res.write(str);
+      res.write(JSON.stringify(a));
+    // }
 
     res.end();
   });
@@ -113,7 +113,7 @@ router.get('/course/generate', function(req, res, next) {
       //   console.log("time.a[",i,"] is ", time.a[i]);
       // }
 
-      var timesort = new TimeSort(time.a);
+      var timesort = new Sort(time.a, "time");
       // console.log(timesort.a);
 
       

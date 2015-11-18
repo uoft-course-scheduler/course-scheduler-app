@@ -137,7 +137,7 @@ function intToRGB(i){
     return "00000".substring(0, 6 - c.length) + c;
 }
 
-function insertSection(section, course_code) {
+function insertSection(section, course_code, classTimes) {
 	var times = section.times;
 
 	for (var j=0; j<times.length; j++) {
@@ -147,14 +147,29 @@ function insertSection(section, course_code) {
 			end = times[j].end,
 			center = ((end - start  - 1) / 2) + start, // Subtracting 1 because it doesn't include the end hour
 			even = ( (times[j].duration % 2) == 0);
+			var isConflict = false;
 
 		while (time != end) {
-			var colour = intToRGB(hashCode(course_code));
-			console.log(colour);
+			var classTime = times[j].day.toUpperCase() + time;
 			var hourRow = $("." + time);
 			hourBlock = hourRow.children(day);
+			if (classTimes.indexOf(classTime) > -1){
+				isConflict = true;
+			}
+			else{
+				classTimes.push(classTime);
+			}
+			if (isConflict){
+				var colour = "#FF0000";
+			}
+			else{
+				hourBlock[0].start = start;
+				hourBlock[0].end = end;
+				var colour = "#" + intToRGB(hashCode(course_code));
+			}
+			
 			hourBlock.css("border", "none");
-			hourBlock.css("background-color", "#" + colour);
+			hourBlock.css("background-color", colour);
 			hourBlock.css("padding", "15px");
 			time += 1;
 		}
@@ -164,13 +179,79 @@ function insertSection(section, course_code) {
 				secondHalf = Math.ceil(center),
 				firstHalfBlock = $("." + firstHalf).children(day), // Doing same thing as hourBlock -> hourRow just all in 1 line
 				secondHalfBlock = $("." + secondHalf).children(day);
-				firstHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location);
-				secondHalfBlock.html(section.instructors);
+				if (isConflict){
+					var conflictStart = Math.min(start, firstHalfBlock[0].start);
+					var conflictFirstHalf = "";
+					for (var i = conflictStart; i < secondHalfBlock[0].end; i++){
+						var tempBlock = $("." + i).children(day);
+						conflictFirstHalf += tempBlock[0].innerHTML + "<br>";
+						tempBlock.css("background-color", "#FF0000");
+					}
+					conflictFirstHalf = removeConflictStr(conflictFirstHalf);
+					firstHalfBlock = $("." + conflictStart).children(day)
+					if (conflictStart == start){
+						firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>");
+						secondHalfBlock.html(conflictFirstHalf);
+					}
+					else{
+						firstHalfBlock.html("CONFLICT<br>" + conflictFirstHalf);
+						secondHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>");
+					}
+					
+				}
+				else{
+					firstHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location);
+					secondHalfBlock.html(section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
+				}
 		} else {
-			centerBlock = $("." + center).children(day);
-			centerBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors);
+			var centerBlock = $("." + center).children(day);
+			if (isConflict){
+				var oneHour = false;
+				if (start == centerBlock[0].start && end == centerBlock[0].end && (end - start) == 1){
+					oneHour = true;
+				}
+				var conflictStart = Math.min(start, centerBlock[0].start);
+				var secondHalfBlock = $("." + (centerBlock[0].end - 1)).children(day);
+				var conflictFirstHalf = "";
+				for (var i = conflictStart; i < centerBlock[0].end; i++){
+					var tempBlock = $("." + i).children(day);
+					conflictFirstHalf += tempBlock[0].innerHTML + "<br>";
+					tempBlock.css("background-color", "#FF0000");
+				}
+				conflictFirstHalf = removeConflictStr(conflictFirstHalf);
+				firstHalfBlock = $("." + conflictStart).children(day)
+				if (oneHour){
+					firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00" + "<br><br>" + conflictFirstHalf);
+				}
+				else if (conflictStart == start){
+					firstHalfBlock.html("CONFLICT<br>" + course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
+					centerBlock.html(conflictFirstHalf);
+				}
+				else{
+					firstHalfBlock.html("CONFLICT<br>" + conflictFirstHalf);
+					secondHalfBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");
+				}
+			} else{
+				centerBlock.html(course_code + "<br>" + section.code + "<br>" + times[j].location + "<br>" + section.instructors + "<br>" + getTime(start) + ":00 - " + getTime(end) + ":00");		
+			}
 		}
 	}
+}
+
+function getTime(time){
+	var retTime = time % 12;
+	if (retTime == 0){
+		retTime = 12;
+	}
+	return retTime;
+}
+
+function removeConflictStr(conflictStr){
+	var conflictString = "CONFLICT<br>";
+	if (conflictStr.indexOf(conflictString) > -1){
+		conflictStr = conflictStr.substring(12);
+	}
+	return conflictStr;
 }
 
 function renderCourses(json, index){
@@ -180,11 +261,13 @@ function renderCourses(json, index){
 	var numPermutations = json.length;
 	$('#total').html(numPermutations);
 	$('#index').html(index);
+	var classTimes = [];
 	//var index = $('#index').html();
 	for (var i = 0; i < schedule.length; i++){
+		
 		var section = schedule[i].meeting_section;
 		var course_code = schedule[i].course_code;
-		insertSection(section, course_code);
+		insertSection(section, course_code, classTimes);
 	}
 }
 
