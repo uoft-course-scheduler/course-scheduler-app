@@ -107,6 +107,9 @@ router.get('/course/generate', function(req, res, next) {
         var toDelete = [];
         var currentCourse = cobaltCourses[i];
         var meetingSections = currentCourse.meeting_sections;
+        if (meetingSections == undefined){
+          continue;
+        }
         //get meeting sections to compare
         for (var j = 0; j < meetingSections.length - 1; j++){
           for (var k = j+1; k < meetingSections.length; k++){
@@ -135,19 +138,12 @@ router.get('/course/generate', function(req, res, next) {
           cobaltCourses[i].meeting_sections.splice(del, 1);
         }
       }
-      // console.log(edited[0]);
-      // console.log(cobaltCourses[0].meeting_sections);
+
       var generate = new Generate(cobaltCourses);
 
       var time = new Time(generate);
 
-      // console.log(time.a);
-      // for (var i = 0; i<time.a.length; i++) {
-      //   console.log("time.a[",i,"] is ", time.a[i]);
-      // }
-
       var timesort = new Sort(time.a, "time");
-      // console.log(timesort.a);
 
       
       // for here we should be able to do something like 
