@@ -399,9 +399,10 @@ $(document).ready(function() {
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
 		query = getCourseCodesQuery();
+    var filter = $('#filter').val();
 
 		$.ajax({
-			url: '/uoft/course/generate?courses=' + query,
+			url: '/uoft/course/generate?courses=' + query + '&filter=' + filter,
 			dataType: 'json',
 			success: function(data) {
 				DATA = data;

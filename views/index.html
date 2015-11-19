@@ -2,7 +2,8 @@
 	<div class="col-md-3" id="left">
 		<script src="/js/dropdown.js"></script>
 		<select id ="filter" class="filterMenu">
-			<option selected="selected">Filter Results by</option>
+			<option value="conflict" selected="selected" disabled>Filter Results by</option>
+			<option value="conflict">Least Conflicts</option>
 			<option value="leastTime">Least time at school</option>
 			<option value="evening">Evening Classes preferred</option>
 			<option value="longBreaks">Long Breaks</option>
@@ -20,11 +21,11 @@
 				</div>
 				<div id="winterTerm" class="col-md-6">
 				Winter term:
-					<input class = "courses" type="text" name="course7" placeholder="CSC108H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course7" onkeyup="populateDatalistWinter(this)">
-					<input class = "courses" type="text" name="course8" placeholder="CSC165H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course8" onkeyup="populateDatalistWinter(this)">
+					<input class = "courses" type="text" name="course7" placeholder="CSC148H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course7" onkeyup="populateDatalistWinter(this)">
+					<input class = "courses" type="text" name="course8" placeholder="CSC236H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course8" onkeyup="populateDatalistWinter(this)">
 					<input class = "courses" type="text" name="course9" placeholder="MAT136H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course9" onkeyup="populateDatalistWinter(this)">
-					<input class = "courses" type="text" name="course10" placeholder="PSY100H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course10" onkeyup="populateDatalistWinter(this)">
-					<input class = "courses" type="text" name="course11" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course11" onkeyup="populateDatalistWinter(this)">
+					<input class = "courses" type="text" name="course10" placeholder="LIN200H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course10" onkeyup="populateDatalistWinter(this)">
+					<input class = "courses" type="text" name="course11" placeholder="GGR101H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course11" onkeyup="populateDatalistWinter(this)">
 					<input class = "courses" type="text" name="course12" placeholder="FOR310H1S" maxlength = "9" style="text-transform:uppercase" list="winterList" id="course12" onkeyup="populateDatalistWinter(this)">
 				</div>
 			</div>
