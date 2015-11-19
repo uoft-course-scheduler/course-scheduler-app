@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * The Time Class.
+ * The Conflict Class.
  * This class wraps around an array and calculates the
  * conflicts of the schedule. The resulting sort can be accessed
  * as an array.
@@ -10,9 +10,14 @@
  */
 
 var Conflict = function(a) {
-    this.a = conflict(a);
+  // Make a copy of the array, instead of using a reference.
+  this.a = a.slice();
 };
 
+Conflict.prototype.sort = function() {
+  this.a = conflict(a);
+  return this.a;
+};
 
 /**
  * Returns the time of conflict between two classes.

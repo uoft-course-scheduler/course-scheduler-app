@@ -1,36 +1,29 @@
-/**
-* The TimeSort Class.
-* This class sorts a schedule depending on the time.
-*
-* @param {Array} a the array to be sorted
-*/
-
-var Sort = function(a, filter) {
-	if (filter == "time"){
-		this.a = timeSort(a);
-	}
-	if (filter == "conflict"){
-		this.a = conflictSort(a);
-	}
-}
+var path = require('path');
+var TimeSort = require(path.join(__dirname, 'least-time'));
+var Conflict = require(path.join(__dirname, 'conflict'));
 
 /**
- * Returns initial array sorted by least time spent at school.
- * @param  {Array} a  the array to sort.
- * @return {Array}    an array sorted by least time spent at school.
+ * The Sort Class.
+ * This utilizes the strategy pattern.
+ *
+ * This class takes in a string representing the strategy that will be used for
+ * sorting. Then, calling the sort method will use the corresponding strategy
+ * to sort a given Time object, and return the result.
+ * 
+ * @param {String} strategy the strategy to use.
  */
-function timeSort(a){
-	a.sort(function(a, b){
-		return parseFloat(a.time) - parseFloat(b.time);
-	});
-	return a;
+var Sort = function(strategy) {
+  if (strategy === "conflict") {
+    this.sorter = Conflict;
+  } else if (strategy === "leastTime") {
+    this.sorter = TimeSort;
+  }
 }
 
-function conflictSort(a){
-	a.sort(function(a, b){
-		return parseFloat(a.conflict) - parseFloat(b.conflict);
-	});
-	return a;
-}
+
+Sort.prototype.sort = function(a) {
+  var algorithm = new this.sorter(a);
+  return algorithm.sort();
+};
 
 module.exports = Sort;
