@@ -103,7 +103,37 @@ router.get('/course/generate', function(req, res, next) {
     if (courses.length > 0) {
       cobalt.findCourse(courses[0], r);
     } else {
-
+      for (var i = 0; i < cobaltCourses.length; i++){//get one course
+        var toDelete = [];
+        var currentCourse = cobaltCourses[i];
+        var meetingSections = currentCourse.meeting_sections;
+        // console.log(meetingSections);
+        for (var j = 0; j < meetingSections.length - 1; j++){
+          for (var k = j+1; k < meetingSections.length; k++){
+            section1 = meetingSections[j];
+            section2 = meetingSections[k];
+            if (section1.times.length != section2.times.length){
+              continue;
+            }
+            for (var l = 0; l < section1.times.length; l++){
+              if ( section1.times.location != section2.times.location || section1.times[l].day != section2.times[l].day || 
+                section1.times[l].start != section2.times[l].start || section1.times[l].end != section2.times[l].end){
+                break;
+              }
+              if (l == section1.times.length - 1){
+                section2.code = section2.code + "/" + section1.code;
+                toDelete.push(j);
+              }
+            }
+          }
+        }
+        for (var m = toDelete.length - 1; m >= 0; m--){
+          var del = toDelete[m];
+          cobaltCourses[i].meeting_sections.splice(del, 1);
+        }
+      }
+      // console.log(edited[0]);
+      // console.log(cobaltCourses[0].meeting_sections);
       var generate = new Generate(cobaltCourses);
 
       var time = new Time(generate);
@@ -119,7 +149,7 @@ router.get('/course/generate', function(req, res, next) {
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(timesort.a.slice(0,10)));
+      res.end(JSON.stringify(timesort.a));
     }
 
   });
