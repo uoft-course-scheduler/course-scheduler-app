@@ -115,6 +115,9 @@ router.get('/course/generate', function(req, res, next) {
           for (var k = j+1; k < meetingSections.length; k++){
             section1 = meetingSections[j];
             section2 = meetingSections[k];
+            if (section1.code.charAt(0) == "T" || section2.code.charAt(0) == "T"){
+              continue;
+            }
             if (section1.times.length != section2.times.length){//meeting sections have different times, no need to compare
               continue;
             }
@@ -126,15 +129,23 @@ router.get('/course/generate', function(req, res, next) {
               }
               //meeting sections are the same
               if (l == section1.times.length - 1){
-                section2.code = section2.code + "/" + section1.code;
+                section2.code = section2.code + "/" + section1.code.substr(0,5);
                 toDelete.push(j);
               }
             }
           }
         }
+        //remove duplicates from the todelete section. This is in the case where there are more than 
+        //2 section codes which have the same time.
+        var results = [];
+        for (var count = 0; count < toDelete.length - 1; count++) {
+            if (toDelete[count + 1] == toDelete[count]) {
+                toDelete.splice(count, 1);
+            }
+        }
         //remove the duplicates in backwards order
         for (var m = toDelete.length - 1; m >= 0; m--){
-          var del = toDelete[m];
+          var del = results[m];
           cobaltCourses[i].meeting_sections.splice(del, 1);
         }
       }
