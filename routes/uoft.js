@@ -114,8 +114,7 @@ router.get('/course/generate', function(req, res, next) {
       // }
 
       var sort = new Sort('leastTime');
-      var result = sort.sort(time.a);
-
+      var result = sort.sort(time);
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
