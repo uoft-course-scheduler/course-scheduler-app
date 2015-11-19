@@ -83,6 +83,11 @@ router.get('/course/generate', function(req, res, next) {
   // We expect as GET parameter a list of course code seperated by comma.
   var courses = req.query.courses.split(',');
 
+  // There will also be an optional GET parameter that contains the "filter" to
+  // use for sorting the timetable. Defaults to least conflict.
+  var filter = req.query.filter || 'conflict';
+
+
   if (courses.length < 1) {
     res.end(JSON.stringify({}));
   }
@@ -108,12 +113,15 @@ router.get('/course/generate', function(req, res, next) {
 
       var time = new Time(generate);
 
-      // console.log(time.a);
-      // for (var i = 0; i<time.a.length; i++) {
-      //   console.log("time.a[",i,"] is ", time.a[i]);
-      // }
-
-      var sort = new Sort('leastTime');
+      var sort;
+      try {
+        sort = new Sort(filter);
+      } catch(ex) {
+        // If the given strategy is unsupported (e.g. someone sent a custom GET
+        // query with an unsupported filter), we will default to conflict.
+        sort = new Sort('conflict');
+      }
+      
       var result = sort.sort(time);
       
       // for here we should be able to do something like 

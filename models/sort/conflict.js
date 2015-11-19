@@ -15,7 +15,7 @@ var Conflict = function(a) {
 };
 
 Conflict.prototype.sort = function() {
-  this.a = conflict(a);
+  this.a = conflict(this.a);
   return this.a;
 };
 
