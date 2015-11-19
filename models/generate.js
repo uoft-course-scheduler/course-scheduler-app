@@ -20,6 +20,8 @@ function gen(a) {
     courseList.push(a[i]);
   }
 
+  reduce(courseList);
+
   // call helper to generate permutations
   permutation(courseList, []);
 
@@ -65,6 +67,55 @@ function permutation(courses, arrangement) {
       }
     }
     
+}
+
+function reduce(courses){
+  for (var i = 0; i < courses.length; i++){//get one course
+          var toDelete = [];
+          var currentCourse = courses[i];
+          var meetingSections = currentCourse.meeting_sections;
+          if (meetingSections == undefined){
+            continue;
+          }
+          //get meeting sections to compare
+          for (var j = 0; j < meetingSections.length - 1; j++){
+            for (var k = j+1; k < meetingSections.length; k++){
+              section1 = meetingSections[j];
+              section2 = meetingSections[k];
+              if (section1.code.charAt(0) == "T" || section2.code.charAt(0) == "T"){
+                continue;
+              }
+              if (section1.times.length != section2.times.length){//meeting sections have different times, no need to compare
+                continue;
+              }
+              for (var l = 0; l < section1.times.length; l++){
+                //make sure the meeting section times and instructors are the same
+                if ( section1.times.location != section2.times.location || section1.times[l].day != section2.times[l].day || 
+                  section1.times[l].start != section2.times[l].start || section1.times[l].end != section2.times[l].end){
+                  break;
+                }
+                //meeting sections are the same
+                if (l == section1.times.length - 1){
+                  section2.code = section2.code + "/" + section1.code.substr(0,5);
+                  toDelete.push(j);
+                }
+              }
+            }
+          }
+          //remove duplicates from the todelete section. This is in the case where there are more than 
+          //2 section codes which have the same time.
+          var results = [];
+          for (var count = 0; count < toDelete.length - 1; count++) {
+              if (toDelete[count + 1] == toDelete[count]) {
+                  toDelete.splice(count, 1);
+              }
+          }
+          //remove the duplicates in backwards order
+          for (var m = toDelete.length - 1; m >= 0; m--){
+            var del = results[m];
+            courses[i].meeting_sections.splice(del, 1);
+          }
+        }
 }
 
 module.exports = Generate;
