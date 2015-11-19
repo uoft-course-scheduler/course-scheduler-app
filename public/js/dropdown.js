@@ -1,21 +1,32 @@
 /**
- * Get the course names from courses.json and populate the dropdown lists
+ * Populate the dropdown list based on user input
  *
  */
 
- function populateDatalist(input) {
+function populateDatalistFall(input) {
     if (input.value.length >= 3) {
+      var dataList = document.getElementById('fallList');
       //clear current list
-      var dataList = document.getElementById('courseList');
       dataList.innerHTML = "";
       
       //create new list
-      populate(input, dataList);
+      populate(input, dataList, "Fall");
+    }
+ }
+ 
+function populateDatalistWinter(input) {
+    if (input.value.length >= 3) {
+      var dataList = document.getElementById('winterList');
+      //clear current list
+      dataList.innerHTML = "";
+      
+      //create new list
+      populate(input, dataList, "Winter");
     }
  }
 
 
- function populate(input, dataList) {
+function populate(input, dataList, term) {
     var query = input.value;
 
     /* 
@@ -40,8 +51,9 @@
         // Set the value using the item in the JSON array.
         option.value = item.code;
 
-        // Add the <option> element to the <datalist>.
-        dataList.appendChild(option);
+        // Add option to datalist if it is in the correct term
+        if ((item.term.search(term) != -1))
+          dataList.appendChild(option);
         });
     
       }
