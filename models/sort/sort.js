@@ -24,7 +24,7 @@ var Sort = function(strategy) {
   if (strategy === "conflict") {
     this.sorter = Conflict;
   } else if (strategy === "leastTime") {
-    this.sorter = TimeSort;
+    this.sorter = Time;
   } else {
     throw "Unsupported Strategy";
   }
@@ -40,13 +40,14 @@ var Sort = function(strategy) {
  */
 Sort.prototype.sort = function(time) {
 
-  if (!(time instanceof Time)) {
-    throw "Invalid Argument";
-  }
+  // if (!(time instanceof Time)) {
+  //   throw "Invalid Argument";
+  // }
 
   // time.a is the inner array representing the permutation of the courses in
   // the Time object.
-  var algorithm = new this.sorter(time.a);
+  var algorithm = new this.sorter(time);
+  var result = algorithm.sort()
 
   return algorithm.sort();
 };

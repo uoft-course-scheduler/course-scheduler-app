@@ -16,6 +16,9 @@ var Conflict = function(a) {
 
 Conflict.prototype.sort = function() {
   this.a = conflict(this.a);
+  this.a.sort(function(a, b){
+    return parseFloat(a.conflict) - parseFloat(b.conflict);
+  });
   return this.a;
 };
 

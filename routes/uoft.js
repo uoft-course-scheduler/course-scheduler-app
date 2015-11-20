@@ -111,8 +111,6 @@ router.get('/course/generate', function(req, res, next) {
 
       var generate = new Generate(cobaltCourses);
 
-      var time = new Time(generate);
-
       var sort;
       try {
         sort = new Sort(filter);
@@ -122,7 +120,7 @@ router.get('/course/generate', function(req, res, next) {
         sort = new Sort('conflict');
       }
       
-      var result = sort.sort(time);
+      var result = sort.sort(generate);
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display

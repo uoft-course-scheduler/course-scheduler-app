@@ -10,7 +10,15 @@
  */
 
 var Time = function(a) {
-    this.a = time(a);
+    this.a = a.slice();
+};
+
+Time.prototype.sort = function() {
+  this.a = time(this.a);
+  this.a.sort(function(a, b) {
+    return parseFloat(a.time) - parseFloat(b.time);
+  });
+  return this.a;
 };
 
 /**
