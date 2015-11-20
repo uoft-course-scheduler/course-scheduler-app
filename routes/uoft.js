@@ -94,6 +94,9 @@ router.get('/course/generate', function(req, res, next) {
 
   // We want to convert the course strings to a Cobalt Course object.
   var cobaltCourses = [];
+  var fallCourses = [];
+  var yearCourses = [];
+  var winterCourses = [];
 
   cobalt.findCourse(courses[0], function r(result) {
 
@@ -108,10 +111,38 @@ router.get('/course/generate', function(req, res, next) {
     if (courses.length > 0) {
       cobalt.findCourse(courses[0], r);
     } else {
+      for (var i = 0; i < cobaltCourses.length; i++){
+        if (cobaltCourses[i].code.slice(-1) == "F"){
+          fallCourses.push(cobaltCourses[i]);
+        }
+        else if (cobaltCourses[i].code.slice(-1) == "S"){
+          winterCourses.push(cobaltCourses[i]);
+        }
+        else if (cobaltCourses[i].code.slice(-1) == "Y"){
+          yearCourses.push(cobaltCourses[i]);
+          fallCourses.push(cobaltCourses[i]);
+          winterCourses.push(cobaltCourses[i]);
+        }
+      }
 
-      var generate = new Generate(cobaltCourses);
+      console.log(fallCourses.length);
+      if (fallCourses.length == yearCourses.length && fallCourses.length == winterCourses.length){
+        console.log("TTTT");
+        winterCourses = [];
+      }
 
-      var time = new Time(generate);
+      // yearCourses[0].meeting_sections[0]["YEARVALUE"] = 123;
+      // console.log(yearCourses[0].meeting_sections[0]);
+      for (var i = 0; i < yearCourses.length; i++){
+        var course = yearCourses[i];
+        for (var j = 0; j < course.meeting_sections.length; j++){
+          course.meeting_sections[j]["yearValue"] = j;
+        }
+      }
+
+      var fallGenerate = new Generate(fallCourses);
+
+      var time = new Time(fallGenerate);
 
       var sort;
       try {
@@ -122,11 +153,35 @@ router.get('/course/generate', function(req, res, next) {
         sort = new Sort('conflict');
       }
       
-      var result = sort.sort(time);
+      var resultFall = sort.sort(time);
+
+      var winterGenerate = new Generate(winterCourses);
+
+      var time = new Time(winterGenerate);
+
+      var sort;
+      try {
+        sort = new Sort(filter);
+      } catch(ex) {
+        // If thekk given strategy is unsupported (e.g. someone sent a custom GET
+        // query with an unsupported filter), we will default to conflict.
+        sort = new Sort('conflict');
+      }
       
+      var resultWinter = sort.sort(time);
+
+      if (resultWinter[0].time == 0){
+        result = resultFall;
+      }
+      else if (resultFall[0].time == 0){
+        result = resultWinter;
+      }
+      else{
+        var result = resultFall.concat(resultWinter);
+      }
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(result.slice(0,10)));
+      res.end(JSON.stringify(result));
     }
 
   });
