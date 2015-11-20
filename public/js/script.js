@@ -129,12 +129,17 @@ function hashCode(str) { // java String#hashCode
     return hash;
 } 
 
-function intToRGB(i){
-    var c = (i & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase();
+// function intToRGB(i){
+//     var c = (i & 0x00FFFFFF)
+//         .toString(16)
+//         .toUpperCase();
 
-    return "00000".substring(0, 6 - c.length) + c;
+//     return "00000".substring(0, 6 - c.length) + c;
+// }
+
+function intToHSL(i) {
+	var shortened = i % 360;
+    return "hsl(" + shortened + ",50%,85%)";
 }
 
 function insertSection(section, course_code, classTimes) {
@@ -165,7 +170,7 @@ function insertSection(section, course_code, classTimes) {
 			else{
 				hourBlock[0].start = start;
 				hourBlock[0].end = end;
-				var colour = "#" + intToRGB(hashCode(course_code));
+				var colour = intToHSL(hashCode(course_code));
 			}
 			
 			hourBlock.css("border", "none");
