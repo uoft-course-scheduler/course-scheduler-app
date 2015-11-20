@@ -1,6 +1,5 @@
 var path = require('path');
 var Time = require(path.join(__dirname, '../time'));
-var TimeSort = require(path.join(__dirname, 'least-time'));
 var Conflict = require(path.join(__dirname, 'conflict'));
 
 /**
