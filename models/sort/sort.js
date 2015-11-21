@@ -1,6 +1,8 @@
 var path = require('path');
-var Time = require(path.join(__dirname, '../time'));
+var Time = require(path.join(__dirname, 'time'));
 var Conflict = require(path.join(__dirname, 'conflict'));
+var Evening = require(path.join(__dirname, 'evening'));
+//var Breaks = require(path.join(__dirname, 'breaks'));
 
 /**
  * The Sort Class.
@@ -24,7 +26,13 @@ var Sort = function(strategy) {
     this.sorter = Conflict;
   } else if (strategy === "leastTime") {
     this.sorter = Time;
-  } else {
+  } else if (strategy === "evening"){
+    this.sorter = Evening;
+  } 
+  //else if (startegy === "longbreaks"){
+    //this.sorter = Breaks;
+  //} 
+  else {
     throw "Unsupported Strategy";
   }
 }
