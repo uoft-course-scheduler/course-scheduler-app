@@ -5,7 +5,6 @@ var url = require('url');
 var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 var Generate = require(path.join(__dirname, '../models/generate'));
-var Time = require(path.join(__dirname, '../models/time'));
 var Sort = require(path.join(__dirname, '../models/sort/sort'));
 //var Conflict = require(path.join(__dirname, '../models/conflict'));
 
