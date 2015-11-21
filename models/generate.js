@@ -112,7 +112,7 @@ function reduce(courses){
           }
           //remove the duplicates in backwards order
           for (var m = toDelete.length - 1; m >= 0; m--){
-            var del = results[m];
+            var del = toDelete[m];
             courses[i].meeting_sections.splice(del, 1);
           }
         }
