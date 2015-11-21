@@ -48,7 +48,7 @@ Sort.prototype.sort = function(time) {
   var algorithm = new this.sorter(time);
   var result = algorithm.sort()
 
-  return algorithm.sort();
+  return result;
 };
 
 module.exports = Sort;

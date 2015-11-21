@@ -113,7 +113,6 @@ function reduce(courses){
           //remove the duplicates in backwards order
           for (var m = toDelete.length - 1; m >= 0; m--){
             var del = toDelete[m];
-            console.log(courses[i].meeting_sections);
             courses[i].meeting_sections.splice(del, 1);
           }
         }
