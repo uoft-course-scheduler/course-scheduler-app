@@ -5,9 +5,8 @@ var url = require('url');
 var path = require('path');
 var Cobalt = require(path.join(__dirname, '../models/cobalt/cobalt'));
 var Generate = require(path.join(__dirname, '../models/generate'));
-var Time = require(path.join(__dirname, '../models/time'));
-var Sort = require(path.join(__dirname, '../models/sort'));
-var Conflict = require(path.join(__dirname, '../models/conflict'));
+var Sort = require(path.join(__dirname, '../models/sort/sort'));
+//var Conflict = require(path.join(__dirname, '../models/conflict'));
 
 
 router.get('/course/list', function(req, res, next) {
@@ -83,6 +82,11 @@ router.get('/course/generate', function(req, res, next) {
   // We expect as GET parameter a list of course code seperated by comma.
   var courses = req.query.courses.split(',');
 
+  // There will also be an optional GET parameter that contains the "filter" to
+  // use for sorting the timetable. Defaults to least conflict.
+  var filter = req.query.filter || 'conflict';
+
+
   if (courses.length < 1) {
     res.end(JSON.stringify({}));
   }
@@ -106,20 +110,20 @@ router.get('/course/generate', function(req, res, next) {
 
       var generate = new Generate(cobaltCourses);
 
-      var time = new Time(generate);
-
-      // console.log(time.a);
-      // for (var i = 0; i<time.a.length; i++) {
-      //   console.log("time.a[",i,"] is ", time.a[i]);
-      // }
-
-      var timesort = new Sort(time.a, "time");
-      // console.log(timesort.a);
-
+      var sort;
+      try {
+        sort = new Sort(filter);
+      } catch(ex) {
+        // If the given strategy is unsupported (e.g. someone sent a custom GET
+        // query with an unsupported filter), we will default to conflict.
+        sort = new Sort('conflict');
+      }
+      
+      var result = sort.sort(generate);
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(timesort.a.slice(0,10)));
+      res.end(JSON.stringify(result.slice(0,10)));
     }
 
   });

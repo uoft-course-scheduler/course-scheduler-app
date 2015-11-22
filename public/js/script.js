@@ -129,12 +129,17 @@ function hashCode(str) { // java String#hashCode
     return hash;
 } 
 
-function intToRGB(i){
-    var c = (i & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase();
+// function intToRGB(i){
+//     var c = (i & 0x00FFFFFF)
+//         .toString(16)
+//         .toUpperCase();
 
-    return "00000".substring(0, 6 - c.length) + c;
+//     return "00000".substring(0, 6 - c.length) + c;
+// }
+
+function intToHSL(i) {
+	var shortened = i % 360;
+    return "hsl(" + shortened + ",50%,85%)";
 }
 
 function insertSection(section, course_code, classTimes) {
@@ -165,7 +170,7 @@ function insertSection(section, course_code, classTimes) {
 			else{
 				hourBlock[0].start = start;
 				hourBlock[0].end = end;
-				var colour = "#" + intToRGB(hashCode(course_code));
+				var colour = intToHSL(hashCode(course_code));
 			}
 			
 			hourBlock.css("border", "none");
@@ -383,10 +388,29 @@ function getCourseCodesQuery() {
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
+			// Check that course code is valid
+			var msg = value.toUpperCase() + " is not a valid course code!";
+			if (value.length == 9) {
+				$.ajax({
+					url: '/uoft/filter/code:'+ value,
+					dataType: 'json',
+					success: function(data) {
+						if (data[0] == null) {
+							$('#statusBar').html(msg);
+						}
+					},
+					error: function(jqXHR, textError) {
+						console.log(textError);
+						console.log(jqXHR);
+					}
+				});
 			query += value + ",";
+			} else {
+				$('#statusBar').html(msg);
+			}
 		} else {
 			// If handling needed for no input
-			// Possible counter/incremenation to check if ANY courses were selected at all
+			// Possible counter/incrementation to check if ANY courses were selected at all
 		}
 	});
 
@@ -398,10 +422,14 @@ $(document).ready(function() {
 
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
+		//reset status bar
+		$('#statusBar').html("");
+
 		query = getCourseCodesQuery();
+    var filter = $('#filter').val();
 
 		$.ajax({
-			url: '/uoft/course/generate?courses=' + query,
+			url: '/uoft/course/generate?courses=' + query + '&filter=' + filter,
 			dataType: 'json',
 			success: function(data) {
 				DATA = data;

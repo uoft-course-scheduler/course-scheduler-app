@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * The Time Class.
+ * The Conflict Class.
  * This class wraps around an array and calculates the
  * conflicts of the schedule. The resulting sort can be accessed
  * as an array.
@@ -10,9 +10,17 @@
  */
 
 var Conflict = function(a) {
-    this.a = conflict(a);
+  // Make a copy of the array, instead of using a reference.
+  this.a = a.slice();
 };
 
+Conflict.prototype.sort = function() {
+  this.a = conflict(this.a);
+  this.a.sort(function(a, b){
+    return parseFloat(a.conflict) - parseFloat(b.conflict);
+  });
+  return this.a;
+};
 
 /**
  * Returns the time of conflict between two classes.
@@ -78,10 +86,11 @@ function conflict(a) {
     for (var i = 0; i < a.length; i++) {
         var conflictTime = 0;
         var schedule = a[i];
+        conflictTime += checkDays(schedule);
         //Get each permutation of the schedule
         for (var t = 0; t < schedule.length - 1 ; t++) {
-            for (var j = 1; j < schedule.length; j++)
-                conflictTime += calculateConflict(schedule[t], schedule[j]);
+            for (var j = t + 1; j < schedule.length; j++)
+                conflictTime += calculateConflict(schedule[t], schedule[j]) * 2;
         }
 
         var conflictIncluded = a[i];
@@ -90,6 +99,38 @@ function conflict(a) {
     }
   
     return scheduleConflict;
+}
+
+function checkDays(a){
+    var monday = 0;
+    var tuesday = 0;
+    var wednesday = 0;
+    var thursday = 0;
+    var friday = 0;
+    for (var i = 0; i < a.length; i++){
+        var schedule = a[i];
+        var times = schedule.meeting_section.times;
+        for (var j = 0; j < times.length; j++){
+            var day = times[j].day;
+            if (day == "MONDAY"){
+                monday = 1;
+            }
+            if (day == "TUESDAY"){
+                tuesday = 1;
+            }
+            if (day == "WEDNESDAY"){
+                wednesday = 1;
+            }
+            if (day == "THURSDAY"){
+                thursday = 1;
+            }
+            if (day == "FRIDAY"){
+                friday = 1;
+            }
+        }
+    }
+
+    return monday + tuesday + wednesday + thursday + friday;
 }
 
 module.exports = Conflict;

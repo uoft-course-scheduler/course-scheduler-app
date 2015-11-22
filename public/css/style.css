@@ -67,6 +67,15 @@ a {
 	width:100%;
 }
 
+#statusBar {
+	position: relative;
+	width: 100%;
+	height: auto;
+	background-color: #f2f2f2;
+	color: red;
+	padding:8px;
+}
+
 	.filterMenu {
 		border: 2px solid #000000;
 		background: #ffffff;

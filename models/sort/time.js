@@ -10,7 +10,15 @@
  */
 
 var Time = function(a) {
-    this.a = time(a);
+    this.a = a.slice();
+};
+
+Time.prototype.sort = function() {
+  this.a = time(this.a);
+  this.a.sort(function(a, b) {
+    return parseFloat(a.time) - parseFloat(b.time);
+  });
+  return this.a;
 };
 
 /**
@@ -95,31 +103,31 @@ function time(a) {
         if (mondayStart == 24 && mondayEnd == 0) {
             mondayTime = 0;
         } else { // else the total time that day is the end time less the start time
-            mondayTime = mondayEnd - mondayStart;
+            mondayTime = mondayEnd - mondayStart + 1;
         }
 
         if (tuesdayStart == 24 && tuesdayEnd == 0) {
             tuesdayTime = 0;
         } else {
-            tuesdayTime = tuesdayEnd - tuesdayStart;
+            tuesdayTime = tuesdayEnd - tuesdayStart + 1;
         }
 
         if (wednesdayStart == 24 && wednesdayEnd == 0) {
             wednesdayTime = 0;
         } else {
-            wednesdayTime = wednesdayEnd - wednesdayStart;
+            wednesdayTime = wednesdayEnd - wednesdayStart + 1;
         }
 
         if (thursdayStart == 24 && thursdayEnd == 0) {
             thursdayTime = 0;
         } else {
-            thursdayTime = thursdayEnd - thursdayStart;
+            thursdayTime = thursdayEnd - thursdayStart + 1;
         }
 
         if (fridayStart == 24 && fridayEnd == 0) {
             fridayTime = 0;
         } else {
-            fridayTime = fridayEnd - fridayStart;
+            fridayTime = fridayEnd - fridayStart + 1;
         }
 
         // lol log messages.
