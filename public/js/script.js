@@ -396,7 +396,7 @@ function getCourseCodesQuery() {
 					dataType: 'json',
 					success: function(data) {
 						if (data[0] == null) {
-							document.getElementById('statusBar').innerHTML = msg;
+							$('#statusBar').html(msg);
 						}
 					},
 					error: function(jqXHR, textError) {
@@ -406,7 +406,7 @@ function getCourseCodesQuery() {
 				});
 			query += value + ",";
 			} else {
-				document.getElementById('statusBar').innerHTML = msg;
+				$('#statusBar').html(msg);
 			}
 		} else {
 			// If handling needed for no input
@@ -423,7 +423,7 @@ $(document).ready(function() {
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
 		//reset status bar
-		document.getElementById('statusBar').innerHTML = "";
+		$('#statusBar').html("");
 
 		query = getCourseCodesQuery();
     var filter = $('#filter').val();
