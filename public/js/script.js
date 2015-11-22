@@ -388,10 +388,29 @@ function getCourseCodesQuery() {
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
+			// Check that course code is valid
+			var msg = value.toUpperCase() + " is not a valid course code!";
+			if (value.length == 9) {
+				$.ajax({
+					url: '/uoft/filter/code:'+ value,
+					dataType: 'json',
+					success: function(data) {
+						if (data[0] == null) {
+							document.getElementById('statusBar').innerHTML = msg;
+						}
+					},
+					error: function(jqXHR, textError) {
+						console.log(textError);
+						console.log(jqXHR);
+					}
+				});
 			query += value + ",";
+			} else {
+				document.getElementById('statusBar').innerHTML = msg;
+			}
 		} else {
 			// If handling needed for no input
-			// Possible counter/incremenation to check if ANY courses were selected at all
+			// Possible counter/incrementation to check if ANY courses were selected at all
 		}
 	});
 
@@ -403,6 +422,9 @@ $(document).ready(function() {
 
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
+		//reset status bar
+		document.getElementById('statusBar').innerHTML = "";
+
 		query = getCourseCodesQuery();
     var filter = $('#filter').val();
 
