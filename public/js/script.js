@@ -418,6 +418,7 @@ function getCourseCodesQuery() {
 				}
 
 				$.ajax({
+					async: false,
 					url: '/uoft/filter/code:'+ value,
 					dataType: 'json',
 					success: function(data) {
