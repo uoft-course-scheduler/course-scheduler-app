@@ -90,7 +90,7 @@ function conflict(a) {
         //Get each permutation of the schedule
         for (var t = 0; t < schedule.length - 1 ; t++) {
             for (var j = t + 1; j < schedule.length; j++)
-                conflictTime += calculateConflict(schedule[t], schedule[j]) * 2;
+                conflictTime += calculateConflict(schedule[t], schedule[j]) * 5;
         }
 
         var conflictIncluded = a[i];
