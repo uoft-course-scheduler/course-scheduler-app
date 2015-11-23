@@ -71,6 +71,15 @@ a {
 	background-color: #d8d8d8;
 }
 
+.x {
+	position: absolute;
+	z-index: 9001;
+	right: 25px;
+	margin-top: -35px;
+	border: 1px solid black;
+	padding: 0px 3px 3px 3px;
+}
+
 #statusBar {
 	position: relative;
 	width: 100%;
