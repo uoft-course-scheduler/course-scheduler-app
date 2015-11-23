@@ -385,12 +385,28 @@ function clearTimeTable() {
 
 function getCourseCodesQuery() {
 	query = '';
+
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
 			// Check that course code is valid
 			var msg = value.toUpperCase() + " is not a valid course code!";
 			if (value.length == 9) {
+
+				console.log($(this));
+				console.log(value.substring(value.length-1));
+				console.log($(this).parent().attr('id'));
+				if ($(this).parent().attr('id') == 'fallTerm' && value.toUpperCase().substring(value.length-1) == 'S') {
+					msg = value.toUpperCase() + " is in the wrong term!";
+					$('#statusBar').html(msg);
+					return true;
+				}
+				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'F') {
+					msg = value.toUpperCase() + " is in the wrong term!";
+					$('#statusBar').html(msg);
+					return true;
+				}
+
 				$.ajax({
 					url: '/uoft/filter/code:'+ value,
 					dataType: 'json',
@@ -404,7 +420,8 @@ function getCourseCodesQuery() {
 						console.log(jqXHR);
 					}
 				});
-			query += value + ",";
+				query += value + ",";
+
 			} else {
 				$('#statusBar').html(msg);
 			}
