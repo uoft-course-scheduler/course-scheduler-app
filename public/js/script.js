@@ -459,19 +459,22 @@ $(document).ready(function() {
 			var correspondingInput = $('#winterTerm .courses').eq(index);
 			correspondingInput.val(value);
 			correspondingInput.attr('disabled', true);
-			correspondingInput.after('<div class="x" data-remove-index="' + index + '">x</div>');
+			correspondingInput.after('<div class="x x-' + index + '" data-remove-class="x-' + index + '" data-remove-index="' + index + '">x</div>');
+			$(this).after('<div class="x x-' + index + '" data-remove-class="x-' + index + '" data-remove-index="' + index + '">x</div>');
 		}
 	});
 
 	$('body').on('click', '.x', function() {
 		console.log($(this).attr('data-remove-index'));
 		var index = $(this).attr('data-remove-index')
+		var removeClass = '.' + $(this).attr('data-remove-class');
 		var fTerm = $('#fallTerm .courses').eq(index);
 		var wTerm = $('#winterTerm .courses').eq(index);
 		fTerm.val('');
 		wTerm.val('');
 		wTerm.attr('disabled', false);
-		$(this).remove();
+		//$(this).remove();
+		$(removeClass).remove();
 	});
 
 	var courseCodes, json = [];
