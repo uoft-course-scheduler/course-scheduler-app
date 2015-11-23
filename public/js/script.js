@@ -401,8 +401,16 @@ function getCourseCodesQuery() {
 					$('#statusBar').html(msg);
 					return true;
 				}
+
 				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'F') {
 					msg += value.toUpperCase() + " is in the wrong term!<br>";
+					$('#statusBar').html(msg);
+					return true;
+				}
+
+				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'Y') {
+					msg += value.toUpperCase() + " can't just be in Winter term, please remove it and put " + value.toUpperCase()
+						+ " in Fall term.<br>";
 					$('#statusBar').html(msg);
 					return true;
 				}
@@ -438,6 +446,19 @@ function getCourseCodesQuery() {
 
 var DATA;
 $(document).ready(function() {
+
+	$('.courses').on('blur', function() {
+		console.log($(this).index());
+		var value = $(this).val();
+		var index = $(this).index();
+		if ($(this).parent().attr('id') == 'fallTerm' // In Fall Term column
+			&& value.length == 9 // Course code of length 9
+			&& value.toUpperCase().substring(value.length-1) == 'Y') { // Course code ending in Y
+			var correpsondingInput = $('#winterTerm .courses').eq(index);
+			correpsondingInput.val(value);
+			correpsondingInput.attr('disabled', true);
+		}
+	});
 
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {

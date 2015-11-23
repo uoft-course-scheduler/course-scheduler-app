@@ -67,6 +67,10 @@ a {
 	width:100%;
 }
 
+.courses:disabled {
+	background-color: #d8d8d8;
+}
+
 #statusBar {
 	position: relative;
 	width: 100%;
