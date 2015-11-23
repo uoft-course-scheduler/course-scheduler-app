@@ -370,7 +370,7 @@ function get(opt, callback, q) {
    * Handler for when the http request time out.
    */
   request.on('timeout', function() {
-    console.log('REQUEST TIMEOUT ' + options.host + options.path + ' ' + e);
+    console.log('REQUEST TIMEOUT ' + options.host + options.path);
     request.abort();
     callback(null);
   });
