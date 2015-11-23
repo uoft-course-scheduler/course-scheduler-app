@@ -42,3 +42,13 @@ Group worked together to discuss ideas and fix/implement features:
 * Implementation of additional sorting options
 
 ## Artifacts:
+
+### Team Burndown
+![team burndown](./burndowns/team.png)
+
+### Individual Burndowns
+* [Wayne (Zsw007)](./burndowns/Wayne.png)
+* [Eugene (eu-wong)](./burndowns/Eugene.jpg)
+* [Samir (samirp91)](./burndowns/Samir.jpg)
+* [Jacky (Jaacky)](./burndowns/Jacky.jpg)
+* [Ellen (ellenupp)](./burndowns/Ellen.png)
