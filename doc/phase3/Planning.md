@@ -1,8 +1,8 @@
 # Planning.md
 
-## U of T Time Table Creator
+## U of T Timetable Creator
 
-Our plan was to build a U of T Time Table Creator that would drastically reduce the amount of time necessary for a student to plan their courses. The U of T Time Table Creator would be a web app that allowed students to list all their desired courses in one go, and automatically generate possible timetables for them. This would make it much easier for the student to visualize what sections they must take.
+Our plan was to build a U of T Timetable Creator that would drastically reduce the amount of time necessary for a student to plan their courses. The U of T Timetable Creator would be a web app that allowed students to list all their desired courses in one go, and automatically generate possible timetables for them. This would make it much easier for the student to visualize what sections they must take.
 
 To plan our course of action, we repeatedly divided the project into smaller and smaller sized chunks until it reaches a point where a single person can reasonably complete it. We then added these chunks into our sprint backlog. 
 
@@ -31,6 +31,6 @@ Each class was a seperate entry to our sprint backlog. Our utilization of sepera
 
 # Retrospect
 
-In retrospect, our plan worked out smoothly with minimal adjustments necessary. We have successfully met our goal of creating a MVP of the U of T Time Table Creator. In fact, we managed to split our project in such a way to avoid couplation. We were able to simultaneously work on several parts of the project without the necessity of waiting for a certain person to finish their portion first. However, we did find that several entries in the backlog was able to be simutaneously completed by a single person. Perhaps we may have split up our project too much in some aspects, and we should try and group up portions that are too small for next time.
+In retrospect, our plan worked out smoothly with minimal adjustments necessary. We have successfully met our goal of creating a MVP of the U of T Timetable Creator. In fact, we managed to split our project in such a way to avoid couplation. We were able to simultaneously work on several parts of the project without the necessity of waiting for a certain person to finish their portion first. However, we did find that several entries in the backlog was able to be simutaneously completed by a single person. Perhaps we may have split up our project too much in some aspects, and we should try and group up portions that are too small for next time.
 
 Through our completion of the project, we discovered the importance of single responsibility in Software Engineering. For without it, our project may not have been completed on time given all the computation that must be done.
