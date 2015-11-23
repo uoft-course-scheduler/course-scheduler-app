@@ -385,24 +385,24 @@ function clearTimeTable() {
 
 function getCourseCodesQuery() {
 	query = '';
-
+	var msg = '';
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
 			// Check that course code is valid
-			var msg = value.toUpperCase() + " is not a valid course code!";
+			
 			if (value.length == 9) {
 
 				console.log($(this));
 				console.log(value.substring(value.length-1));
 				console.log($(this).parent().attr('id'));
 				if ($(this).parent().attr('id') == 'fallTerm' && value.toUpperCase().substring(value.length-1) == 'S') {
-					msg = value.toUpperCase() + " is in the wrong term!";
+					msg += value.toUpperCase() + " is in the wrong term!<br>";
 					$('#statusBar').html(msg);
 					return true;
 				}
 				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'F') {
-					msg = value.toUpperCase() + " is in the wrong term!";
+					msg += value.toUpperCase() + " is in the wrong term!<br>";
 					$('#statusBar').html(msg);
 					return true;
 				}
@@ -412,6 +412,7 @@ function getCourseCodesQuery() {
 					dataType: 'json',
 					success: function(data) {
 						if (data[0] == null) {
+							msg += value.toUpperCase() + " is not a valid course code!<br>";
 							$('#statusBar').html(msg);
 						}
 					},
@@ -423,6 +424,7 @@ function getCourseCodesQuery() {
 				query += value + ",";
 
 			} else {
+				msg += value.toUpperCase() + " is not a valid course code!<br>";
 				$('#statusBar').html(msg);
 			}
 		} else {
