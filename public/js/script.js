@@ -385,17 +385,44 @@ function clearTimeTable() {
 
 function getCourseCodesQuery() {
 	query = '';
+	var msg = '';
 	$('.courses').each(function(index, element) {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
 			// Check that course code is valid
-			var msg = value.toUpperCase() + " is not a valid course code!";
+			
 			if (value.length == 9) {
+
+				console.log($(this));
+				console.log(value.substring(value.length-1));
+				console.log($(this).parent().attr('id'));
+				if ($(this).parent().attr('id') == 'fallTerm' && value.toUpperCase().substring(value.length-1) == 'S') {
+					msg += value.toUpperCase() + " is in the wrong term!<br>";
+					$('#statusBar').html(msg);
+					return true;
+				}
+
+				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'F') {
+					msg += value.toUpperCase() + " is in the wrong term!<br>";
+					$('#statusBar').html(msg);
+					return true;
+				}
+
+				if ($(this).parent().attr('id') == 'winterTerm' && value.toUpperCase().substring(value.length-1) == 'Y') {
+					if ( !$(this).attr('disabled') ) {
+						msg += value.toUpperCase() + " can't just be in Winter term, please remove it and put " + value.toUpperCase()
+							+ " in Fall term.<br>";
+							$('#statusBar').html(msg);
+						}
+					return true;
+				}
+
 				$.ajax({
 					url: '/uoft/filter/code:'+ value,
 					dataType: 'json',
 					success: function(data) {
 						if (data[0] == null) {
+							msg += value.toUpperCase() + " is not a valid course code!<br>";
 							$('#statusBar').html(msg);
 						}
 					},
@@ -404,8 +431,10 @@ function getCourseCodesQuery() {
 						console.log(jqXHR);
 					}
 				});
-			query += value + ",";
+				query += value + ",";
+
 			} else {
+				msg += value.toUpperCase() + " is not a valid course code!<br>";
 				$('#statusBar').html(msg);
 			}
 		} else {
@@ -420,13 +449,41 @@ function getCourseCodesQuery() {
 var DATA;
 $(document).ready(function() {
 
+	$('.courses').on('blur', function() {
+		console.log($(this).index());
+		var value = $(this).val();
+		var index = $(this).index();
+		if ($(this).parent().attr('id') == 'fallTerm' // In Fall Term column
+			&& value.length == 9 // Course code of length 9
+			&& value.toUpperCase().substring(value.length-1) == 'Y') { // Course code ending in Y
+			var correspondingInput = $('#winterTerm .courses').eq(index);
+			correspondingInput.val(value);
+			correspondingInput.attr('disabled', true);
+			correspondingInput.after('<div class="x x-' + index + '" data-remove-class="x-' + index + '" data-remove-index="' + index + '">x</div>');
+			$(this).after('<div class="x x-' + index + '" data-remove-class="x-' + index + '" data-remove-index="' + index + '">x</div>');
+		}
+	});
+
+	$('body').on('click', '.x', function() {
+		console.log($(this).attr('data-remove-index'));
+		var index = $(this).attr('data-remove-index')
+		var removeClass = '.' + $(this).attr('data-remove-class');
+		var fTerm = $('#fallTerm .courses').eq(index);
+		var wTerm = $('#winterTerm .courses').eq(index);
+		fTerm.val('');
+		wTerm.val('');
+		wTerm.attr('disabled', false);
+		//$(this).remove();
+		$(removeClass).remove();
+	});
+
 	var courseCodes, json = [];
 	$('#generateSchedule').on('click', function() {
 		//reset status bar
 		$('#statusBar').html("");
 
 		query = getCourseCodesQuery();
-    var filter = $('#filter').val();
+    	var filter = $('#filter').val();
 
 		$.ajax({
 			url: '/uoft/course/generate?courses=' + query + '&filter=' + filter,
