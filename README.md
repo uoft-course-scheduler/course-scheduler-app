@@ -4,7 +4,6 @@ If you would like to contribute, feel free to fork this repo and make pull reque
 To start this application, you must have node.js installed.  
 Once you've installed it, run the following commands:  
 ``` 
-npm init
 npm install
 npm start
 ```
