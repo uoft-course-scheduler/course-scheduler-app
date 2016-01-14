@@ -9,7 +9,7 @@ var Sort = require(path.join(__dirname, '../models/sort/sort'));
 //var Conflict = require(path.join(__dirname, '../models/conflict'));
 
 
-router.get('/course/list', function(req, res, next) {
+router.get('/course/', function(req, res, next) {
   var cobalt = new Cobalt('Yu6lYuyoUmSjWVMShglIbQKbKPTZYwxk');
 
   cobalt.listCourses(function(courses) {

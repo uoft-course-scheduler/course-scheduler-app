@@ -13,7 +13,7 @@ var Building = require(path.join(__dirname, 'building'));
 var LIST_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
-  path: '/api/1.0/courses/list',
+  path: '/api/1.0/courses/',
   headers: {
     'Accept': 'application/json'
   }
@@ -28,7 +28,7 @@ var LIST_COURSES = {
 var SHOW_COURSES = {
   host: 'cobalt.qas.im',
   port: 443,
-  path: '/api/1.0/courses/show/:id',
+  path: '/api/1.0/courses/:id',
   headers: {
     'Accept': 'application/json'
   }
