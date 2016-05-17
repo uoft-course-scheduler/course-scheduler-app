@@ -24,7 +24,7 @@ a {
    background: -ms-linear-gradient(top, #8cd1ff, #8cd1ff);
    background: -o-linear-gradient(top, #8cd1ff, #8cd1ff);
    background-image: -ms-linear-gradient(top, #8cd1ff 0%, #8cd1ff 100%);
-   padding: 10px 73px;
+   padding: 10px 10px;
    -webkit-border-radius: 0px;
    -moz-border-radius: 0px;
    border-radius: 0px;
@@ -33,11 +33,12 @@ a {
    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
    text-shadow: #8cd1ff 0 1px 0;
    color: #ffffff;
-   font-size: 28px;
+   font-size: 20px;
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
    width: 100%;
+   margin-bottom: 4px;
    }
 
    #leftSide {

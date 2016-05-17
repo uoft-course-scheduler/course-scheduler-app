@@ -1,126 +1,3 @@
-course =
-   {
-      "meeting_section" :
-      	[{
-	         "code":"L5101",
-	         "size":85,
-	         "enrolment":0,
-	         "times":[
-	            {
-	               "day":"MONDAY",
-	               "start":18,
-	               "end":21,
-	               "duration":3,
-	               "location":"BA 1200"
-	            }
-	         ],
-	         "instructors":[
-	            "Y Freund"
-	         ]
-	      }],
-      "course_code":"CSC301H1F"
-   }
-
-
-courses = 
-	[
-   [
-      {
-         "meeting_section":{
-            "code":"L0101",
-            "size":85,
-            "enrolment":0,
-            "times":[
-               {
-                  "day":"MONDAY",
-                  "start":12,
-                  "end":13,
-                  "duration":1,
-                  "location":"BA 1200"
-               },
-               {
-                  "day":"WEDNESDAY",
-                  "start":12,
-                  "end":13,
-                  "duration":1,
-                  "location":"BA 1200"
-               },
-               {
-                  "day":"FRIDAY",
-                  "start":12,
-                  "end":13,
-                  "duration":1,
-                  "location":"BA 1200"
-               }
-            ],
-            "instructors":[
-               "M Zaleski"
-            ]
-         },
-         "course_code":"CSC301H1F"
-      },
-      {
-         "meeting_section":{
-            "code":"L0101",
-            "size":160,
-            "enrolment":0,
-            "times":[
-               {
-                  "day":"MONDAY",
-                  "start":11,
-                  "end":12,
-                  "duration":1,
-                  "location":"LM 159"
-               },
-               {
-                  "day":"TUESDAY",
-                  "start":9,
-                  "end":11,
-                  "duration":2,
-                  "location":"LM 162"
-               },
-               {
-                  "day":"WEDNESDAY",
-                  "start":11,
-                  "end":12,
-                  "duration":1,
-                  "location":"LM 159"
-               },
-               {
-                  "day":"FRIDAY",
-                  "start":11,
-                  "end":12,
-                  "duration":1,
-                  "location":"LM 159"
-               }
-            ],
-            "instructors":[
-               "G Baumgartner"
-            ]
-         },
-         "course_code":"CSC165H1F"
-      }
-   ]
-]
-
-
-
-// function renderCourse(json, code) {
-// 	var sections = json.meeting_section,
-// 		section;
-// 	var course_code = json.course_code;
-// 	for (var i=0; i<sections.length; i++) {
-// 		if (sections[i].code == code) {
-// 			section = sections[i];
-// 			break;
-// 		}
-// 	}
-
-// 	if (sections) {
-// 		insertSection(section, course_code);
-// 	}
-// }
-
 function hashCode(str) { // java String#hashCode
     var hash = 0;
     for (var i = 0; i < str.length; i++) {
@@ -262,26 +139,37 @@ function removeConflictStr(conflictStr){
 var FALL_TERM = [];
 var WINTER_TERM = [];
 
+//generate without tutorials
 function renderTimetable(json, index){
 	var i = index - 1 || 0;
 	var courses = json[i];
 	var numPermutations = json.length;
 	$('#total').html(numPermutations);
 	$('#index').html(index);
-	// var classTimes = [];
-	// var index = $('#index').html();
-
-	// for (var j = 0; j < schedule.length; j++){
-		
-	// 	var section = schedule[j].meeting_section;
-	// 	var course_code = schedule[j].course_code;
-	// 	insertSection(section, course_code, classTimes);
-	// }
 
 	splitTerms(courses);
 	if ($('#winterToggle').hasClass('active')) {
 		renderTerm(WINTER_TERM);
 	} else {
+		renderTerm(FALL_TERM);
+	}
+
+}
+
+//generate with tutorials
+function renderTimetable2(json, index){
+	var i = index - 1 || 0;
+	var courses = json[i];
+	var numPermutations = json.length;
+	$('#total').html(numPermutations);
+	$('#index').html(index);
+	
+	splitTerms(courses);
+	if (!fallView) {
+		console.log("WINTER TERM");
+		renderTerm(WINTER_TERM);
+	} else {
+		console.log("FALL TERM");
 		renderTerm(FALL_TERM);
 	}
 
@@ -296,8 +184,6 @@ function splitTerms(courses) {
 		var semester = course_code.charAt(course_code.length - 1);
 		// console.log(semester);
 		if (semester == 'F') {
-			console.log("IN FALL");
-			console.log(course_code);
 			FALL_TERM.push(courses[i]);
 		}
 		else if (semester == 'S') {
@@ -418,7 +304,7 @@ function getCourseCodesQuery() {
 				}
 
 				$.ajax({
-					async: false,
+					async: true,
 					url: '/uoft/filter/code:'+ value,
 					dataType: 'json',
 					success: function(data) {
@@ -447,7 +333,12 @@ function getCourseCodesQuery() {
 	return query.substring(0, query.length-1);
 }
 
-var DATA;
+var fallData;
+var winterData;
+var fallCount = 1;
+var winterCount = 1;
+var fallView = true;
+var tutorials;
 $(document).ready(function() {
 
 	$('.courses').on('blur', function() {
@@ -478,9 +369,12 @@ $(document).ready(function() {
 		$(removeClass).remove();
 	});
 
+	//generate without tutorials
 	var courseCodes, json = [];
+
 	$('#generateSchedule').on('click', function() {
 		//reset status bar
+		tutorials = false;
 		$('#statusBar').html("");
 
 		query = getCourseCodesQuery();
@@ -501,30 +395,148 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#prevPermutation').on('click', function() {
+	if (!tutorials){
+		$('#prevPermutation').on('click', function() {
 		var index = parseInt($('#index').html());
 		if (index > 1) {
 			var newIndex = index - 1;
 			$('#index').html(newIndex);
 			renderTimetable(DATA, newIndex)
 		}
-	});
+		});
 
-	$('#nextPermutation').on('click', function() {
-		var index = parseInt($('#index').html());
-		var total = parseInt($('#total').html());
-		if (index < total) {
-			var newIndex = index + 1;
-			$('#index').html(newIndex);
-			renderTimetable(DATA, newIndex);
+		$('#nextPermutation').on('click', function() {
+			var index = parseInt($('#index').html());
+			var total = parseInt($('#total').html());
+			if (index < total) {
+				var newIndex = index + 1;
+				$('#index').html(newIndex);
+				renderTimetable(DATA, newIndex);
+			}
+		});
+
+		$('#fallToggle').on('click', function() {
+			renderTerm(FALL_TERM);
+		});
+
+		$('#winterToggle').on('click', function() {
+			renderTerm(WINTER_TERM);
+		});
+	}
+
+
+	//generate with tutorials
+	$('#generateSchedule2').on('click', function() {
+		tutorials = true;
+		fallCount = 1;
+		winterCount = 1;
+		//reset status bar
+		$('#statusBar').html("");
+
+		query = getCourseCodesQuery();
+		fallTerm = '';
+		winterTerm = ''; 
+		courses = query.split(',');
+		console.log(courses);
+		for (var i = 0; i < courses.length; i++){
+			if (courses[i].charAt(courses[i].length-1).toUpperCase() == 'F'){
+				fallTerm += courses[i] + ",";
+			}
+			else if (courses[i].charAt(courses[i].length-1).toUpperCase() == 'S'){
+				winterTerm += courses[i] + ",";
+			}
+			else{
+				fallTerm += courses[i] + ",";
+				winterTerm += courses[i] + ",";
+			}
 		}
+
+		console.log(fallTerm);
+    	var filter = $('#filter').val();
+
+		$.ajax({
+			url: '/uoft/course/generate2?courses=' + fallTerm + '&filter=' + filter,
+			dataType: 'json',
+			success: function(data) {
+				fallData = data;
+				console.log(fallData.length);
+				if (fallView){
+					renderTimetable2(fallData, 1);
+				}
+			},
+			error: function(jqXHR, textError) {
+				console.log(textError);
+				console.log(jqXHR);
+			}
+		});
+
+		$.ajax({
+			url: '/uoft/course/generate2?courses=' + winterTerm + '&filter=' + filter,
+			dataType: 'json',
+			success: function(data) {
+				winterData = data;
+				console.log(winterData.length);
+				if (!fallView){
+					renderTimetable2(winterData, 1);
+				}
+			},
+			error: function(jqXHR, textError) {
+				console.log(textError);
+				console.log(jqXHR);
+			}
+		});
+
 	});
 
-	$('#fallToggle').on('click', function() {
-		renderTerm(FALL_TERM);
-	});
+	if (tutorials){
+		$('#prevPermutation').on('click', function() {
+			if (fallView){
+				if (fallCount > 1) {
+					fallCount = fallCount - 1;
+					$('#index').html(fallCount);
+					renderTimetable2(fallData, fallCount);
+				}
+			}
+			else{
+				if (winterCount > 1){
+					winterCount = winterCount - 1;
+					$('#index').html(winterCount);
+					renderTimetable2(winterData, winterCount);
+				}
+			}
+		});
 
-	$('#winterToggle').on('click', function() {
-		renderTerm(WINTER_TERM);
-	});
+		$('#nextPermutation').on('click', function() {
+			var total = parseInt($('#total').html());
+			if (fallView){
+				if (fallCount < total) {
+					fallCount = fallCount + 1;
+					$('#index').html(fallCount);
+					renderTimetable2(fallData, fallCount);
+				}
+			}
+			else{
+				if (winterCount < total){
+					winterCount = winterCount + 1;
+					$('#index').html(winterCount);
+					renderTimetable2(winterData, winterCount);
+				}
+			}
+		});
+
+		$('#fallToggle').on('click', function() {
+			fallView = true;
+			$('#index').html(fallCount);
+			renderTimetable2(fallData, fallCount);
+			console.log("FALLDATA1: " + fallData.length);
+			
+		});
+
+		$('#winterToggle').on('click', function() {
+			fallView = false;
+			$('#index').html(winterCount);
+			renderTimetable2(winterData, winterCount);
+			
+		});
+	}
 });
