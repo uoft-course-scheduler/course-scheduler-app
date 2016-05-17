@@ -124,7 +124,7 @@ router.get('/course/generate', function(req, res, next) {
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(result));
+      res.end(JSON.stringify(result.slice(0,300)));
     }
 
   });
@@ -180,7 +180,7 @@ router.get('/course/generate2', function(req, res, next) {
       
       // for here we should be able to do something like 
       // generate the permutations and send it to the client for display
-      res.end(JSON.stringify(result));
+      res.end(JSON.stringify(result.slice(0,300)));
     }
 
   });

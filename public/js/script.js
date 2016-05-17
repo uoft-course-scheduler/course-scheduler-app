@@ -395,34 +395,34 @@ $(document).ready(function() {
 		});
 	});
 
-	if (!tutorials){
-		$('#prevPermutation').on('click', function() {
-		var index = parseInt($('#index').html());
-		if (index > 1) {
-			var newIndex = index - 1;
-			$('#index').html(newIndex);
-			renderTimetable(DATA, newIndex)
-		}
-		});
+	// if (!tutorials){
+	// 	$('#prevPermutation').on('click', function() {
+	// 	var index = parseInt($('#index').html());
+	// 	if (index > 1) {
+	// 		var newIndex = index - 1;
+	// 		$('#index').html(newIndex);
+	// 		renderTimetable(DATA, newIndex)
+	// 	}
+	// 	});
 
-		$('#nextPermutation').on('click', function() {
-			var index = parseInt($('#index').html());
-			var total = parseInt($('#total').html());
-			if (index < total) {
-				var newIndex = index + 1;
-				$('#index').html(newIndex);
-				renderTimetable(DATA, newIndex);
-			}
-		});
+	// 	$('#nextPermutation').on('click', function() {
+	// 		var index = parseInt($('#index').html());
+	// 		var total = parseInt($('#total').html());
+	// 		if (index < total) {
+	// 			var newIndex = index + 1;
+	// 			$('#index').html(newIndex);
+	// 			renderTimetable(DATA, newIndex);
+	// 		}
+	// 	});
 
-		$('#fallToggle').on('click', function() {
-			renderTerm(FALL_TERM);
-		});
+	// 	$('#fallToggle').on('click', function() {
+	// 		renderTerm(FALL_TERM);
+	// 	});
 
-		$('#winterToggle').on('click', function() {
-			renderTerm(WINTER_TERM);
-		});
-	}
+	// 	$('#winterToggle').on('click', function() {
+	// 		renderTerm(WINTER_TERM);
+	// 	});
+	// }
 
 
 	//generate with tutorials
@@ -488,8 +488,9 @@ $(document).ready(function() {
 
 	});
 
-	if (tutorials){
-		$('#prevPermutation').on('click', function() {
+	
+	$('#prevPermutation').on('click', function() {
+		if (tutorials){
 			if (fallView){
 				if (fallCount > 1) {
 					fallCount = fallCount - 1;
@@ -504,9 +505,19 @@ $(document).ready(function() {
 					renderTimetable2(winterData, winterCount);
 				}
 			}
-		});
+		}
+		else{
+			var index = parseInt($('#index').html());
+			if (index > 1) {
+				var newIndex = index - 1;
+				$('#index').html(newIndex);
+				renderTimetable(DATA, newIndex)
+			}
+		}
+	});
 
-		$('#nextPermutation').on('click', function() {
+	$('#nextPermutation').on('click', function() {
+		if (tutorials){
 			var total = parseInt($('#total').html());
 			if (fallView){
 				if (fallCount < total) {
@@ -522,21 +533,39 @@ $(document).ready(function() {
 					renderTimetable2(winterData, winterCount);
 				}
 			}
-		});
+		}
+		else{
+			var index = parseInt($('#index').html());
+			var total = parseInt($('#total').html());
+			if (index < total) {
+				var newIndex = index + 1;
+				$('#index').html(newIndex);
+				renderTimetable(DATA, newIndex);
+			}
+		}
+	});
 
-		$('#fallToggle').on('click', function() {
+	$('#fallToggle').on('click', function() {
+		if (tutorials){
 			fallView = true;
 			$('#index').html(fallCount);
 			renderTimetable2(fallData, fallCount);
-			console.log("FALLDATA1: " + fallData.length);
-			
-		});
+		}
+		else{
+			renderTerm(FALL_TERM);
+		}
+		
+	});
 
-		$('#winterToggle').on('click', function() {
+	$('#winterToggle').on('click', function() {
+		if (tutorials){
 			fallView = false;
 			$('#index').html(winterCount);
 			renderTimetable2(winterData, winterCount);
-			
-		});
-	}
+		}
+		else{
+			renderTerm(WINTER_TERM);
+		}
+	});
+	
 });
