@@ -166,10 +166,8 @@ function renderTimetable2(json, index){
 	
 	splitTerms(courses);
 	if (!fallView) {
-		console.log("WINTER TERM");
 		renderTerm(WINTER_TERM);
 	} else {
-		console.log("FALL TERM");
 		renderTerm(FALL_TERM);
 	}
 
@@ -180,9 +178,7 @@ function splitTerms(courses) {
 	WINTER_TERM = [];
 	for (var i=0; i<courses.length; i++) {
 		var course_code = courses[i].course_code;
-		// console.log(course_code);
 		var semester = course_code.charAt(course_code.length - 1);
-		// console.log(semester);
 		if (semester == 'F') {
 			FALL_TERM.push(courses[i]);
 		}
@@ -276,12 +272,9 @@ function getCourseCodesQuery() {
 		value = $('.courses').eq(index).val();
 		if (value != '') { // Check if input field actually has a course selected
 			// Check that course code is valid
-			
+			console.log(value);
 			if (value.length == 9) {
-
-				console.log($(this));
-				console.log(value.substring(value.length-1));
-				console.log($(this).parent().attr('id'));
+				
 				if ($(this).parent().attr('id') == 'fallTerm' && value.toUpperCase().substring(value.length-1) == 'S') {
 					msg += value.toUpperCase() + " is in the wrong term!<br>";
 					$('#statusBar').html(msg);
@@ -304,18 +297,18 @@ function getCourseCodesQuery() {
 				}
 
 				$.ajax({
-					async: true,
+					async: false,
 					url: '/uoft/filter/code:'+ value,
 					dataType: 'json',
 					success: function(data) {
-						if (data[0] == null) {
+						console.log(data[0]);
+						if (data[0] == undefined) {
+							console.log("VALUE: " + value);
 							msg += value.toUpperCase() + " is not a valid course code!<br>";
 							$('#statusBar').html(msg);
 						}
 					},
 					error: function(jqXHR, textError) {
-						console.log(textError);
-						console.log(jqXHR);
 					}
 				});
 				query += value + ",";
@@ -342,7 +335,6 @@ var tutorials;
 $(document).ready(function() {
 
 	$('.courses').on('blur', function() {
-		console.log($(this).index());
 		var value = $(this).val();
 		var index = $(this).index();
 		if ($(this).parent().attr('id') == 'fallTerm' // In Fall Term column
@@ -357,7 +349,6 @@ $(document).ready(function() {
 	});
 
 	$('body').on('click', '.x', function() {
-		console.log($(this).attr('data-remove-index'));
 		var index = $(this).attr('data-remove-index')
 		var removeClass = '.' + $(this).attr('data-remove-class');
 		var fTerm = $('#fallTerm .courses').eq(index);
@@ -374,23 +365,54 @@ $(document).ready(function() {
 
 	$('#generateSchedule').on('click', function() {
 		//reset status bar
-		tutorials = false;
-		$('#statusBar').html("");
+		tutorials = true;
 
+		tutorials = true;
+		fallCount = 1;
+		winterCount = 1;
+		$('#statusBar').html("");
 		query = getCourseCodesQuery();
+		fallTerm = '';
+		winterTerm = ''; 
+		courses = query.split(',');
+		for (var i = 0; i < courses.length; i++){
+			if (courses[i].charAt(courses[i].length-1).toUpperCase() == 'F'){
+				fallTerm += courses[i] + ",";
+			}
+			else if (courses[i].charAt(courses[i].length-1).toUpperCase() == 'S'){
+				winterTerm += courses[i] + ",";
+			}
+			else{
+				fallTerm += courses[i] + ",";
+				winterTerm += courses[i] + ",";
+			}
+		}
+
     	var filter = $('#filter').val();
 
 		$.ajax({
-			url: '/uoft/course/generate?courses=' + query + '&filter=' + filter,
+			url: '/uoft/course/generate?courses=' + fallTerm + '&filter=' + filter,
 			dataType: 'json',
 			success: function(data) {
-				DATA = data;
-				console.log(DATA.length);
-				renderTimetable(data, 1);
+				fallData = data;
+				if (fallView){
+					renderTimetable2(fallData, 1);
+				}
 			},
 			error: function(jqXHR, textError) {
-				console.log(textError);
-				console.log(jqXHR);
+			}
+		});
+
+		$.ajax({
+			url: '/uoft/course/generate?courses=' + winterTerm + '&filter=' + filter,
+			dataType: 'json',
+			success: function(data) {
+				winterData = data;
+				if (!fallView){
+					renderTimetable2(winterData, 1);
+				}
+			},
+			error: function(jqXHR, textError) {
 			}
 		});
 	});
@@ -437,7 +459,6 @@ $(document).ready(function() {
 		fallTerm = '';
 		winterTerm = ''; 
 		courses = query.split(',');
-		console.log(courses);
 		for (var i = 0; i < courses.length; i++){
 			if (courses[i].charAt(courses[i].length-1).toUpperCase() == 'F'){
 				fallTerm += courses[i] + ",";
@@ -451,7 +472,6 @@ $(document).ready(function() {
 			}
 		}
 
-		console.log(fallTerm);
     	var filter = $('#filter').val();
 
 		$.ajax({
@@ -459,14 +479,11 @@ $(document).ready(function() {
 			dataType: 'json',
 			success: function(data) {
 				fallData = data;
-				console.log(fallData.length);
 				if (fallView){
 					renderTimetable2(fallData, 1);
 				}
 			},
 			error: function(jqXHR, textError) {
-				console.log(textError);
-				console.log(jqXHR);
 			}
 		});
 
@@ -475,14 +492,11 @@ $(document).ready(function() {
 			dataType: 'json',
 			success: function(data) {
 				winterData = data;
-				console.log(winterData.length);
 				if (!fallView){
 					renderTimetable2(winterData, 1);
 				}
 			},
 			error: function(jqXHR, textError) {
-				console.log(textError);
-				console.log(jqXHR);
 			}
 		});
 
@@ -490,7 +504,7 @@ $(document).ready(function() {
 
 	
 	$('#prevPermutation').on('click', function() {
-		if (tutorials){
+		// if (tutorials){
 			if (fallView){
 				if (fallCount > 1) {
 					fallCount = fallCount - 1;
@@ -505,19 +519,19 @@ $(document).ready(function() {
 					renderTimetable2(winterData, winterCount);
 				}
 			}
-		}
-		else{
-			var index = parseInt($('#index').html());
-			if (index > 1) {
-				var newIndex = index - 1;
-				$('#index').html(newIndex);
-				renderTimetable(DATA, newIndex)
-			}
-		}
+		// }
+		// else{
+			// var index = parseInt($('#index').html());
+			// if (index > 1) {
+				// var newIndex = index - 1;
+				// $('#index').html(newIndex);
+				// renderTimetable(DATA, newIndex)
+			// }
+		// }
 	});
 
 	$('#nextPermutation').on('click', function() {
-		if (tutorials){
+		// if (tutorials){
 			var total = parseInt($('#total').html());
 			if (fallView){
 				if (fallCount < total) {
@@ -533,39 +547,39 @@ $(document).ready(function() {
 					renderTimetable2(winterData, winterCount);
 				}
 			}
-		}
-		else{
-			var index = parseInt($('#index').html());
-			var total = parseInt($('#total').html());
-			if (index < total) {
-				var newIndex = index + 1;
-				$('#index').html(newIndex);
-				renderTimetable(DATA, newIndex);
-			}
-		}
+		// }
+		// else{
+		// 	var index = parseInt($('#index').html());
+		// 	var total = parseInt($('#total').html());
+		// 	if (index < total) {
+		// 		var newIndex = index + 1;
+		// 		$('#index').html(newIndex);
+		// 		renderTimetable(DATA, newIndex);
+		// 	}
+		// }
 	});
 
 	$('#fallToggle').on('click', function() {
-		if (tutorials){
+		// if (tutorials){
 			fallView = true;
 			$('#index').html(fallCount);
 			renderTimetable2(fallData, fallCount);
-		}
-		else{
-			renderTerm(FALL_TERM);
-		}
+		// }
+		// else{
+			// renderTerm(FALL_TERM);
+		// }
 		
 	});
 
 	$('#winterToggle').on('click', function() {
-		if (tutorials){
+		// if (tutorials){
 			fallView = false;
 			$('#index').html(winterCount);
 			renderTimetable2(winterData, winterCount);
-		}
-		else{
-			renderTerm(WINTER_TERM);
-		}
+		// }
+		// else{
+			// renderTerm(WINTER_TERM);
+		// }
 	});
 	
 });
